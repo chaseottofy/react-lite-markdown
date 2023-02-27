@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import "../styles/MarkdownEditor.css";
+import "../../styles/MarkdownEditor.css";
 
 export default function MarkdownEditor() {
   const [markdown, setMarkdown] = useState("");
@@ -13,14 +13,15 @@ export default function MarkdownEditor() {
     // ```            code block
     const lines = markdown.split("\n");
     const parsedLines = lines.map((line, i) => {
+
       // check for code block
       if (line === "```") {
-        return <pre className="code-block"></pre>;
+        return <pre key={i} className="command-codeblock"></pre>;
       }
 
       // check for header
       if (line.startsWith("#")) {
-        return <h1 className="header">{line.slice(1)}</h1>;
+        return <h1 key={i} className="header">{line.slice(1)}</h1>;
       }
 
       // check for bold
@@ -31,7 +32,7 @@ export default function MarkdownEditor() {
         const beforeBold = line.slice(0, boldStart);
         const afterBold = line.slice(boldEnd + 1);
         return (
-          <p>
+          <p key={i}>
             {beforeBold}
             <b>{boldText}</b>
             {afterBold}
@@ -46,8 +47,9 @@ export default function MarkdownEditor() {
         const linkText = line.slice(linkStart + 1, linkEnd);
         const beforeLink = line.slice(0, linkStart);
         const afterLink = line.slice(linkEnd + 1);
+        console.log(afterLink);
         return (
-          <p>
+          <p key={i}>
             {beforeLink}
             <a href={afterLink}>{linkText}</a>
           </p>
@@ -62,14 +64,22 @@ export default function MarkdownEditor() {
         const beforeBlue = line.slice(0, blueStart);
         const afterBlue = line.slice(blueEnd + 1);
         return (
-          <p>
-            {beforeBlue}
-            <span className="blue-text">{blueText}</span>
-            {afterBlue}
+          <p key={i}>
+            {/* {beforeBlue} */}
+            <span className={blueEnd === -1 ? "temp-blue" : null}>{beforeBlue}</span>
+            <span className="command-blue">{blueText}</span>
+            <span className={blueEnd === -1 ? "temp-blue" : null}>{afterBlue}</span>
+            {/* {afterBlue} */}
           </p>
         );
       }
 
+      // empty line should be a <br />
+      if (line === "") {
+        return <br key={i} />;
+      }
+
+      // default
       return <p key={i}>
         {line}
       </p>;
@@ -79,8 +89,7 @@ export default function MarkdownEditor() {
   }
 
   return (
-    <div className="container">
-      <h1>Markdown Editor</h1>
+    <div className="markdown-container">
       <div className="markdown-editor">
         <textarea
           className="markdown-input"
@@ -89,9 +98,14 @@ export default function MarkdownEditor() {
           onChange={(e) => setMarkdown(e.target.value)}
         />
       </div>
-        <div className="markdown-preview">
-          {parseMarkdown({ markdown })}
-        </div>
+      <p className="preview-title">output: </p>
+      <div className="markdown-preview">
+        {parseMarkdown({ markdown })}
+      </div>
+      <div className="markdown-file">
+        <button className="btn-primary save-markdown">save</button>
+        <button className="btn-dark upload-markdown">upload</button>
+      </div>
     </div>
   );
 }

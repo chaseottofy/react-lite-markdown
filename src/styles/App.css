@@ -1,16 +1,8 @@
-
-/* main app wrapper */
-/* #root {
-} */
-.App {
+.main-app {
   height: 100%;
-  max-width: 400px !important;
+  width: 100%;
+  max-width: 1180px;
   margin: 0 auto;
-  background: grey;  
-
-  /* width: 100%; */
-  /* max-width: 860px !important; */
-  /* display: flex; */
-  /* flex-direction: column; */
-  /* position: relative; */
+  overflow-y: auto;
+  overflow-x: hidden;
 }

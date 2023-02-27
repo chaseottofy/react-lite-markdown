@@ -1,23 +1,26 @@
-/* .container {
-  padding: 16px;
-} */
+.markdown-container {
+  display:flex;
+  justify-content: center;
+  width: 100%;
+  padding: 14px 28px;
+  flex-direction:column;
+  margin-top: 1rem;
+}
 
 .markdown-editor {
   width: 100%;
   height: 100%;
   display: flex;
-  flex-direction: column;
-  border-radius: 4px;
-  background-image: none;
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-  transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
 }
 
+/* TEXTAREA
+====================*/
 .markdown-input {
+  font-family: monospace !important;
   width: 100%;
   height: 100%;
   min-height: 160px;
-  border: 1px solid var(--mdgrey1);
+  border: 1px solid var(--mdgrey4);
   color: var(--white1) !important;
   border-radius: 4px;
   padding: 8px;
@@ -26,8 +29,30 @@
   color: #333;
   background-color: var(--black2);
   background-image: none;
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-  transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+  transition: border-color ease-in-out 0.15s;
+}
+
+.markdown-input::placeholder {
+  color: var(--mdgrey2);
+}
+
+.markdown-input:focus {
+  outline:none;
+  border-color: var(--mdgrey2);
+}
+
+.markdown-input::-webkit-resizer {
+  border-width: 8px;
+  border-style: solid;
+  border-color: transparent var(--mdgrey2) var(--mdgrey2) transparent;
+}
+
+/* PREVIEW
+====================*/
+.preview-title {
+  padding: 24px 0 8px 0;
+  color: var(--mdgrey2);
+  font-size: 14px;
 }
 
 .markdown-preview {
@@ -35,14 +60,50 @@
   height: 100%;
   min-height: 160px;
   border: 1px solid var(--mdgrey3);
-  color: var(--white1) !important;
+  color: var(--white1);
   border-radius: 4px;
   padding: 8px;
   font-size: 14px;
   line-height: 1.5;
-  color: #333;
   background-color: var(--black1);
   background-image: none;
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
   transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
 }
+
+/* UPLOAD/DOWNLOAD
+====================*/
+.markdown-file {
+  display:flex;
+  justify-content: flex-end;
+  padding: 14px 0;
+}
+.save-markdown,
+.upload-markdown {
+  padding: 6px 18px !important;
+  width: 80px;
+}
+
+.save-markdown {
+  margin-right: 14px;
+}
+/* COMMANDS
+====================*/
+.command-codeblock {
+  font-family: monospace !important;
+  color: var(--primarylight1);
+}
+.command-blue {
+  color: var(--primarylight1);
+}
+.temp-blue {
+  color: transparent;
+}
+
+
+
+
+
+/* @media screen and (max-width: 640px) {
+
+} */

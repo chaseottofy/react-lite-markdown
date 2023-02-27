@@ -1,9 +1,9 @@
-import './styles/app.css';
-import MarkdownEditor from './components/MarkdownEditor';
+import MarkdownEditor from './components/ui/MarkdownEditor';
+import './styles/App.css';
 
 function App() {
   return (
-    <div className='App'>
+    <div className='main-app'>
       <MarkdownEditor />
     </div>
   );
