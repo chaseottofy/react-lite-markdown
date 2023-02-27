@@ -42,6 +42,9 @@
 
 .modal-title {
   color: var(--mdgrey1);
+  font-size: 20px;
+  letter-spacing: 2px;
+  padding-left: 8px;
   line-height: 48px !important;
 }
 
@@ -51,7 +54,6 @@
   width: 100%;
   height: 100%;
   padding: 4px;
-  /* align-items:baseline; */
 }
 
 .markdown-action {
