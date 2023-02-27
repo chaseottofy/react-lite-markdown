@@ -1,13 +1,12 @@
-// import { useState } from 'react'
-import './styles/App.css'
+import './styles/app.css';
+import MarkdownEditor from './components/MarkdownEditor';
 
 function App() {
-
   return (
-    <div className="App">
-
+    <div className='App'>
+      <MarkdownEditor />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

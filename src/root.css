@@ -31,39 +31,8 @@
   src: local('Roboto'), local('Roboto-Regular') url('./assets/fonts/roboto-v30-latin-regular.woff2') format('woff2');
 }
 
-.colorsalt {
-  --white1: #d8f3f5;
-  --white2: #fafafa;
-  --black0: #0f0f0f;
-  --black1: #111314;
-  --black2: #141821;
-  --mdgrey1: #343637;
-  --mdgrey2: #95a0a5;
-  --mdgrey3: #9ec9e9;
-  --mdgrey4: #a2c0dc;
-  --primary1: #2F89CE;
-  --primary2: #429eb2;
-  --primary3: rgb(71, 171, 193);
-  --primarylight1: #9ec9e9;
-}
-
 :root {
   /* color */
-  /* --white1: #E8E6E3;
-  --white2: #C0BAB2;
-  --black0: #111314;
-  --black1: #181a1b;
-  --black2: #1c1f21;
-  --mdgrey1: #222527;
-  --mdgrey2: #393d41;
-  --mdgrey3: #3c4043;
-  --mdgrey4: #9\5a0a5;
-  --primary1: #1a6ee2;
-  --primary2: #125ab8;
-  --primary3: #122e5c;
-  --primarylight1: #4c9cf8; */
-
-   
   --white1: #d8f3f5;
   --white2: #fafafa;
   --black0: #111314;
@@ -77,9 +46,6 @@
   --primary2: #2F89CE;
   --primary3: #2F89CE;
   --primarylight1: #3daafd;
-  /* --primary2: #429eb2; */
-  /* --primary3: rgb(71, 171, 193); */
-  /* --primarylight1: rgb(56, 203, 236); */
 
   /* font */
   --primaryFont: "Roboto", sans-serif;
