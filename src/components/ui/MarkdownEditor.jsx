@@ -1,53 +1,31 @@
-import { useState } from 'react';
-import { useRef } from 'react';
 import ParseMarkdown from "../../features/ParseMarkdown";
-import saveFile from "../../utils/saveFile";
-import uploadFile from "../../utils/uploadFile";
-import Button from "./Button";
 import "../../styles/MarkdownEditor.css";
 
+function handleResize(e) {
 
-export default function MarkdownEditor() {
-  // store the current markdown in <textarea>
-  const [markdown, setMarkdown] = useState("");
-  // use ref for saving
-  const ref = useRef(null);
+}
 
+export default function MarkdownEditor(
+  { markdown, setMarkdown, layoutState }
+) {
   return (
-    <div className="markdown-container">
+    <div
+      className={layoutState === "column" ? "markdown-container vert" : "markdown-container horiz"}
+    >
+      {/* <div 
+        className="markdown-resize"
+      ></div> */}
+
       <div className="markdown-editor">
         <textarea
           className="markdown-input"
           placeholder='add text...'
           value={markdown}
-          onChange={(e) => {
-            const curr = e.target.value;
-            ref.current = curr;
-            setMarkdown(curr);
-          }}
+          onChange={(e) => setMarkdown(e.target.value)}
         />
       </div>
-
-      <p className="preview-title">output: </p>
       <div className="markdown-preview">
         {ParseMarkdown({ markdown })}
-      </div>
-
-      <div className="markdown-file">
-        <Button
-          title="save"
-          btnclass="btn-primary save-markdown"
-          onClick={() => {
-            ref.current.length === 0 ? alert("no markdown to save") : saveFile({ list: ref.current });
-          }}
-        />
-        <Button
-          title="upload"
-          btnclass="btn-dark upload-markdown"
-          onClick={() => {
-            uploadFile({ setMarkdown: setMarkdown });
-          }}
-        />
       </div>
     </div>
   );

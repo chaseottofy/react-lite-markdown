@@ -1,11 +1,11 @@
-import { useState } from "react";
-
 export default function UploadFile({ setMarkdown }) {
-
+  // no database = easy validation
   const validateUpload = (data) => {
     if (!data) return false;
     if (typeof data !== "string") return false;
     if (data.length === 0) return false;
+    
+    // JSON.parse will throw an error if the string is not json
     try {
       JSON.parse(data);
     } catch (e) {
@@ -21,12 +21,11 @@ export default function UploadFile({ setMarkdown }) {
     const file = e.target.files[0];
     const reader = new FileReader();
     reader.onload = (e) => {
-      const json = e.target.result;
-      if (!validateUpload(json)) {
+      if (!validateUpload(e.target.result)) {
         alert("Invalid file");
         return;
       } else {
-        setMarkdown(json);
+        setMarkdown(() => JSON.parse(e.target.result))
       }
     }
     reader.readAsText(file);

@@ -1,8 +1,15 @@
 .main-app {
-  height: 100%;
   width: 100%;
-  max-width: 1180px;
   margin: 0 auto;
-  overflow-y: auto;
-  overflow-x: hidden;
+}
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  margin: 0 auto;
+  overflow:hidden;
+  position: relative;
+  /* z-index: 1; */
+  background: var(--black1);
 }

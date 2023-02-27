@@ -1,0 +1,87 @@
+.modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--black0);
+  margin: auto;
+  max-width: 500px;
+  z-index: -1;
+  pointer-events: none;
+  user-select: none;
+  max-height: 600px;
+  min-height: 300px;
+  min-width: 300px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transform: translateY(4%);
+  transition: transform 150ms ease-in-out;
+  width: 80%;
+  height: 80%;
+  padding: 14px;
+}
+
+.show-modal {
+  transform: translateY(0px);
+  box-shadow: var(--box-shadow1);
+  z-index: 100;
+  pointer-events: inherit;
+  user-select: auto;
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  height: 48px;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.modal-title {
+  color: var(--mdgrey1);
+  line-height: 48px !important;
+}
+
+.modal-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+  height: 100%;
+  padding: 4px;
+  /* align-items:baseline; */
+}
+
+.markdown-action {
+  font-family: monospace !important;
+}
+
+.markdown-action,
+.markdown-output {
+  padding: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.command-link {
+  color: var(--primarylight1);
+  text-decoration: underline;
+}
+
+.command-bold {
+  font-weight: bold;
+}
+
+@media screen and (max-width: 480px) {
+
+  .markdown-action,
+  .markdown-output {
+    font-size: 14px;
+    padding: 4px;
+  }
+}

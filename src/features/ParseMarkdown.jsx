@@ -8,18 +8,16 @@
  * @description parse markdown to html
  * @listens {textarea} onChange
  * @returns 
- 1.) 
- "#recieve \n(markdown)\n*in*\n[string](format.com)" ->
- * -->
- 2.)
- ['#recieve ', '(markdown)', '*in*', '[string](format.com)']
- * -->
- * 3.)
+  recieve :
+  "#recieve \n(markdown)\n*in*\n[string](format.com)"
+  
+  parse as :
     <h1 class="header">recieve </h1>
     <p class="command-blue">markdown</p>
     <p><b>in</b></p>
     <p><a href="(format.com)">string</a></p>
  */
+
 export default function ParseMarkdown({ markdown }) {
   const lines = markdown.split("\n");
   const parsedLines = lines.map((line, i) => {
@@ -31,7 +29,7 @@ export default function ParseMarkdown({ markdown }) {
 
     // HEADER
     if (line.startsWith("#")) {
-      return <h1 key={i} className="header">{line.slice(1)}</h1>;
+      return <h1 key={i} className="command-header">{line.slice(1)}</h1>;
     }
 
     // BOLD

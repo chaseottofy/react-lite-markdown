@@ -35,9 +35,10 @@
   /* color */
   --white1: #d8f3f5;
   --white2: #fafafa;
-  --black0: #111314;
+  --black0: #0f1112;
   --black1: #111314;
   --black2: #1c1f21;
+  --black3: #131516;
   --mdgrey1: #a2c0dc;
   --mdgrey2: #95a0a5;
   --mdgrey3: #34393b;
@@ -45,6 +46,7 @@
   --primary1: #2874ae;
   --primary2: #1666a2;
   --primary3: #2F89CE;
+  --primarydark1: #174264;
   --primarylight1: #3daafd;
 
   /* font */
@@ -114,9 +116,8 @@ body {
   background: var(--black1);
   color: var(--white1);
   line-height: inherit;
+  overflow: hidden;
   height: 100vh;
-  overflow-x:hidden;
-  overflow-y:scroll;
 }
 
 button,
@@ -124,14 +125,14 @@ select {
   text-transform: none;
   border: none;
   outline: none;
+  background: none;
+  color: var(--white1);
 }
 
-select:focus {
-  outline: none;
-}
-
+button:focus-visible,
 select:focus-visible {
-  outline: var(--mdgrey3);
+  border: 2px solid var(--mdgrey1);
+  transition: 150ms ease-out;
 }
 
 input::-moz-placeholder,
@@ -180,6 +181,9 @@ fieldset {
 svg {
   user-select: none;
   pointer-events: none;
+  height: 24px;
+  width: 24px;
+  fill:var(--mdgrey1);
 }
 
 /* scrollbar
@@ -260,6 +264,11 @@ svg {
   border: 1px solid var(--mdgrey3);
 }
 
+.primary-dark {
+  background: var(--primarydark1);
+  border: 1px solid var(--mdgrey3);
+}
+
 .btn-dark,
 .select-dark,
 .input-dark {
@@ -279,6 +288,29 @@ svg {
   background: var(--black0);
   border: 1px solid var(--primary2);
   transition: 150ms ease-in-out;
+}
+
+.btn-svgpair {
+  width: 40px;
+  height: 40px;
+  border-radius: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background 145ms ease;
+}
+
+.btn-svgpair:hover {
+  background: var(--black2);
+}
+
+/* Textarea
+====================*/
+.resizer-1::-webkit-resizer {
+  border-width: 8px;
+  border-style: solid;
+  border-color: transparent var(--mdgrey2) var(--mdgrey2) transparent;
 }
 
 /* Overlay
