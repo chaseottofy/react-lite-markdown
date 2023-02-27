@@ -70,8 +70,8 @@
 .markdown-input {
   font-family: monospace !important;
   resize: none;
-  border-right: 1px solid var(--mdgrey3);
-  border-bottom: 1px solid var(--mdgrey3);
+  border-right: 2px solid var(--mdgrey3);
+  border-bottom: 2px solid var(--mdgrey3);
   background-image: none;
   transition: border-color ease-in-out 0.15s;
 }
@@ -108,8 +108,8 @@
 /* COMMANDS - OUTPUT
 ====================*/
 .command-header {
-  font-size: 21px;
-  line-height: 24px !important;
+  font-size: 26px !important;
+  line-height: 1.5;
 }
 
 .command-codeblock {
@@ -128,6 +128,7 @@
 
 
 @media screen and (max-width: 640px) {
+
   .markdown-input,
   .markdown-preview {
     font-size: 14px;

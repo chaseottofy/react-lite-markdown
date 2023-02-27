@@ -1,20 +1,16 @@
 import "../../styles/Modal.css";
-import Button from "./Button"
+import Button from "./Button";
 import { IoMdClose } from "react-icons/io";
-import { useRef } from "react";
 
 export default function Modal({ modalState, setModalState }) {
-
-
-
   return (
-    <div 
+    <div
       className={modalState ? "modal show-modal" : "modal"}
     >
       <div className="modal-header">
         <h2 className="modal-title">Markdown lite</h2>
 
-        <Button 
+        <Button
           btnclass="btn-svgpair close-modal-btn"
           title={<IoMdClose className="close-modal-icon" />}
           onClick={() => setModalState((prev) => !prev)}
@@ -22,17 +18,17 @@ export default function Modal({ modalState, setModalState }) {
       </div>
 
       <div className="modal-content">
-        <h3 className="markdown-action">#</h3>
-        <h3 className="markdown-output command-header">Header</h3>
+        <h3 className="markdown-action">#Example</h3>
+        <h3 className="markdown-output command-header">Example</h3>
 
-        <h3 className="markdown-action">(...)</h3>
-        <h3 className="markdown-output command-blue">Blue text</h3>
+        <h3 className="markdown-action">(Example)</h3>
+        <h3 className="markdown-output command-blue">Example</h3>
 
-        <h3 className="markdown-action">[name](link)</h3>
-        <h3 className="markdown-output command-link">Hyperlink</h3>
+        <h3 className="markdown-action">[Example](link)</h3>
+        <h3 className="markdown-output command-link">Example</h3>
 
-        <h3 className="markdown-action">*...*</h3>
-        <h3 className="markdown-output command-bold">Bold Text</h3>
+        <h3 className="markdown-action">*Example*</h3>
+        <h3 className="markdown-output command-bold">Example</h3>
       </div>
     </div>
   );

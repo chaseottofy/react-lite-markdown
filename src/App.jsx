@@ -14,15 +14,13 @@ function App() {
   const [modalState, setModalState] = useState(false);
 
   return (
-    <div 
-      className='main-app'
-    >
-      <Sidebar 
+    <div className='main-app'>
+      <Sidebar
         sidebarState={sidebarState}
       />
       <div className="main-container">
-        <Header 
-          markdown={markdown} 
+        <Header
+          markdown={markdown}
           setMarkdown={setMarkdown}
           sidebarState={sidebarState}
           setSidebarState={setSidebarState}
@@ -30,14 +28,14 @@ function App() {
           setLayoutState={setLayoutState}
           setModalState={setModalState}
         />
-        <MarkdownEditor 
+        <MarkdownEditor
           markdown={markdown}
           setMarkdown={setMarkdown}
           layoutState={layoutState}
         />
       </div>
       <aside>
-        <Modal 
+        <Modal
           modalState={modalState}
           setModalState={setModalState}
         />

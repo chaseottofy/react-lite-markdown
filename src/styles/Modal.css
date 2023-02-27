@@ -6,12 +6,12 @@
   bottom: 0;
   background: var(--black0);
   margin: auto;
-  max-width: 500px;
   z-index: -1;
   pointer-events: none;
   user-select: none;
   max-height: 600px;
   min-height: 300px;
+  max-width: 680px;
   min-width: 300px;
   border-radius: 12px;
   display: flex;
