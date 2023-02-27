@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { useRef } from 'react';
 import ParseMarkdown from "../../features/ParseMarkdown";
-import SaveFile from "../../features/SaveFile";
+import saveFile from "../../utils/saveFile";
+import uploadFile from "../../utils/uploadFile";
 import Button from "./Button";
 import "../../styles/MarkdownEditor.css";
 
@@ -37,12 +38,15 @@ export default function MarkdownEditor() {
           title="save"
           btnclass="btn-primary save-markdown"
           onClick={() => {
-            ref.current.length === 0 ? alert("no markdown to save") : SaveFile({ list: ref.current });
+            ref.current.length === 0 ? alert("no markdown to save") : saveFile({ list: ref.current });
           }}
         />
         <Button
           title="upload"
           btnclass="btn-dark upload-markdown"
+          onClick={() => {
+            uploadFile({ setMarkdown: setMarkdown });
+          }}
         />
       </div>
     </div>

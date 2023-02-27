@@ -1,11 +1,26 @@
-// simple version of markdown
-// #              header
-// *text*         bold
-// (text)         blue
-// [text](link)   link
-// ```            code block
+/**
+ * #              HEADER
+ * *text*         BOLD
+ * (text)         BLUE
+ * [text](link)   LINK
+ * ```            CODE BLOCK
+ * @param {string} markdown
+ * @description parse markdown to html
+ * @listens {textarea} onChange
+ * @returns 
+ 1.) 
+ "#recieve \n(markdown)\n*in*\n[string](format.com)" ->
+ * -->
+ 2.)
+ ['#recieve ', '(markdown)', '*in*', '[string](format.com)']
+ * -->
+ * 3.)
+    <h1 class="header">recieve </h1>
+    <p class="command-blue">markdown</p>
+    <p><b>in</b></p>
+    <p><a href="(format.com)">string</a></p>
+ */
 export default function ParseMarkdown({ markdown }) {
-  // ref.current = markdown;
   const lines = markdown.split("\n");
   const parsedLines = lines.map((line, i) => {
 
