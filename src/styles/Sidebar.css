@@ -147,12 +147,12 @@
 }
 
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 440px) {
   .sidebar {
-    width: 320px;
+    width: 100%;
   }
 
   .hide-sidebar {
-    transform: translateX(-320px);
+    transform: translateX(-100%);
   }
 }
