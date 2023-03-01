@@ -47,8 +47,11 @@
   font-size: 14px;
   line-height: 1.4;
   padding: 1em;
-  overflow-x: auto;
-  width: min-content;
+  /* overflow-x: auto; */
+  overflow:hidden;
+  /* white-space: nowrap; */
+  white-space:pre-wrap;
+  /* width: min-content; */
 }
 
 .pre::-webkit-scrollbar {
@@ -60,6 +63,7 @@
   background: var(--black2);
   padding: 4px;
   color: var(--mdgrey1);
+  /* width: 100%; */
 }
 
 .blockquote {

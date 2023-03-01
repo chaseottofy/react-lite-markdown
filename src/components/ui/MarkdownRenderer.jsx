@@ -3,6 +3,13 @@ import ParseLiteMarkdown from '../../features/ParseLiteMarkdown';
 import "../../styles/MarkdownEditor.css";
 import "../../styles/MarkdownCommands.css";
 
+/**
+ * MarkdownRenderer
+ * @description - renders markdown editor and preview
+ * @param {string} html - save textarea value to state
+ * @param {function} setHtml
+ * @param {string} layoutState - horizontal or vertical layout
+ */
 export default function MarkdownRenderer(
   {
     html,

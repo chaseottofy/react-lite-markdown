@@ -10,6 +10,16 @@ import saveFile from "../../utils/saveFile";
 import uploadFile from "../../utils/uploadFile";
 import "../../styles/Header.css";
 
+
+/**
+ * Header
+ * @param {string} html 
+ * @param {function} setHtml
+ * @param {boolean} sidebarState
+ * @param {function} setSidebarState
+ * @param {string} layoutState "column" or "row"
+ * @param {function} setLayoutState
+ */
 export default function Header({
   html,
   setHtml,
@@ -27,7 +37,7 @@ export default function Header({
           className="header-title"
           href="https://github.com/chaseottofy/react-lite-markdown"
           target="_blank"
-        >MD LITE
+        >MDLite
         </a>
 
         <Button
@@ -61,7 +71,6 @@ export default function Header({
         <Tooltip anchorSelect="#layout-btn" content="change layout" />
         <Tooltip anchorSelect="#copy-btn" content="copy markdown" />
       </div>
-
 
       <div className="header-col-2">
         <div className="handle-markdown__btns">

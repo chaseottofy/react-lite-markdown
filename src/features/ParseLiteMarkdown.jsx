@@ -1,16 +1,21 @@
+/**
+  #, ##, ###          H1, H2, H3
+  *text*              bold
+  [link](url)         link
+  {url}               image
+  <code></code>       codeblock
+  >                   blockquote
+  - unordered         list
+  ___                 linebreak
+
+
+ * ParseLiteMarkdown
+ * @param {string} html
+ * @returns {JSX.Element}
+ * @listens e.target - textarea - ./components/ui/MarkdownRenderer
+ * @description only supports h1, h2, h3, bold, link, image, codeblock, blockquote, unordered list.
+ */
 export default function ParseLiteMarkdown({ html }) {
-  /**
-    LITE MARKDOWN
-    #                H1
-    ##               H2
-    ###              H3
-    *text*           bold
-    [link](url)      link
-    {url}            image
-    <code></code>    codeblock
-    >                blockquote
-    - unordered      list
-   */
   let lines = html.split('\n');
   const pattern = {
     header1: {
@@ -56,6 +61,7 @@ export default function ParseLiteMarkdown({ html }) {
   };
 
   const parsedLines = lines.map((line, i) => {
+
     /* HEADER 1 : # text */
     if (pattern.header1.regex.test(line)) {
       return (
@@ -67,9 +73,11 @@ export default function ParseLiteMarkdown({ html }) {
 
     /* HEADER 2 : ## text */
     if (pattern.header2.regex.test(line)) {
-      return (<h2 key={i} className={pattern.header2.class}>
-        {line.match(pattern.header2.regex)[1]}
-      </h2>);
+      return (
+        <h2 key={i} className={pattern.header2.class}>
+          {line.match(pattern.header2.regex)[1]}
+        </h2>
+      );
     }
 
     /* HEADER 3 : ### text */
@@ -101,14 +109,16 @@ export default function ParseLiteMarkdown({ html }) {
       );
     }
 
-    /* CODE  <code>text</code>*/
+    /* CODE <code>text</code> */
+    // 
     if (pattern.code.regex.test(line)) {
-      const currcode = line.match(pattern.code.regex);
-      const codesplit = line.split(pattern.code.regex);
+      let currcode = line.match(pattern.code.regex);
+      let codesplit = line.split(pattern.code.regex);
       return (
-        <div key={i} className="handle-wrap">
+        <div key={i}>
           {
             codesplit.map((text, idx) => {
+              // slice <code></code>
               if (text === currcode[0].slice(6, -7)) {
                 return (
                   <pre key={idx} className="pre">
@@ -130,7 +140,8 @@ export default function ParseLiteMarkdown({ html }) {
       return <hr key={i} className={pattern.hr.class} />;
     }
 
-    /* LINK [linkname](url)*/
+    /* LINK [linkname](url) */
+    /* Must include https:// ? */
     if (pattern.link.regex.test(line)) {
       let [text, url] = line.split("](");
       return (
@@ -145,7 +156,7 @@ export default function ParseLiteMarkdown({ html }) {
       );
     }
 
-    /* IMAGE {url}*/
+    /* IMAGE {url} */
     if (pattern.image.regex.test(line)) {
       return (
         <img
@@ -180,7 +191,7 @@ export default function ParseLiteMarkdown({ html }) {
       return <br key={i} />;
     }
 
-    /* base */
+    /* Default */
     return <p key={i}>{line}</p>;
   });
 

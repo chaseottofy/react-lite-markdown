@@ -1,3 +1,8 @@
+/**
+ * markdownparse
+ * @param {string} text 
+ * @description original implementation.. removing when done
+ */
 function markdownparse(text) {
   const header1Regex = /^# (.+)/;
   const header2Regex = /^## (.+)/;
@@ -6,9 +11,7 @@ function markdownparse(text) {
   const blueRegex = /\(([^\)]+)\)/g;
   const hrRegex = /^___$/;
   const italicRegex = /_([^_]+)_/g;
-  // write a regex to test for {}
   const linkRegex = /\[([^\]]+)\]\(([^\)]+)\)/g;
-  // const imageRegex = /!\[([^\]]+)\]\(([^\)]+)\)/g;
   const imageRegex = /\{([^\}]+)\}/g
   const codeRegex = /^`{3}\n([\s\S]+)\n`{3}$/;
   const blockquoteRegex = /^> (.+)/;
@@ -53,17 +56,3 @@ function markdownparse(text) {
   }
   return html;
 }
-
-// write a regex to test for <code> and </code>
-
-const text = '<code>hello();let a = 1;</code>';
-const check = /<code>([\s\S]+)<\/code>/;
-
-let othertext = '<code>hello there()</code> dude'
-let currcode = othertext.match(check)
-console.log(currcode[0])
-// console.log(othertext.split(check)[1] === currcode)
-// console.log(check.split(text))
-// console.log(othertext.replace(check, '$1'))
-
-// console.log(text.split(check))

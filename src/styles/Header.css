@@ -32,8 +32,8 @@
   font-weight: 700;
   line-height: 1.4;
   letter-spacing: 1px;
-  display:flex;
-  align-items:center;
+  display: flex;
+  align-items: center;
   text-decoration: none;
   color: var(--primarylight1) !important;
   padding: 0 12px 0 8px;
@@ -50,7 +50,7 @@
 .help-btn svg,
 .set-layout__btn svg,
 .copy-markdown svg,
-.menu-btn svg { 
+.menu-btn svg {
   width: 20px;
   height: 20px;
 }
@@ -77,4 +77,10 @@
 .save-markdown:hover svg,
 .upload-markdown:hover svg {
   fill: var(--primarylight1);
+}
+
+@media screen and (max-width: 320px) {
+  .header-col-2 {
+    display:none;
+  }
 }
