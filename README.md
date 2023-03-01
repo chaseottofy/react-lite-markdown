@@ -1,13 +1,31 @@
 # markdown lite
 
-Simple version of markdown I plan on using for personal note-taking. This is my first project using React after a year of vanilla...
+What separates this from many other react markdown editors is the avoidance of dangerouslySetInnerHTML and the ability to resize the editor/preview panels.
+All input is parsed through custom logic and rendered as react elements.
 
-## Five total commands
+I do not have much react experience at this point (1 week) and I have not explored the majority of the react api/standard library. This is purely an attempt to get my feet wet, disregard any bad practices.
+
+Features:
+
+- avoids dangerouslySetInnerHTML
+- editor and preview
+- horizontal and vertical layouts
+- horizontal and vertical resizing
+- word count
+- save to json file
+- upload from json file
+- copy to clipboard
+
+## Nine total commands
 
 ```javascript
-#              header
-*text*         bold text
-(text)         blue text
-[text](link)   link
-```            code block
+#                H1
+##               H2
+###              H3
+*text*           bold
+[link](url)      link
+{url}            image
+<code></code>       codeblock
+>                blockquote
+- unordered      list
 ```

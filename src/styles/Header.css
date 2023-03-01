@@ -18,20 +18,43 @@
   width: 100%;
 }
 
-/* MENU
+
+/* COLUMN ONE
 ====================*/
 .header-col-1 {
   padding-left: 8px;
 }
 
-.menu-btn {
-  width: 48px !important;
-  height: 48px !important;
+.header-title {
+  height: 100%;
+  width: min-content;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: 1px;
+  display:flex;
+  align-items:center;
+  color: var(--primarylight1) !important;
+  padding: 0 12px 0 8px;
 }
 
+.help-btn {
+  margin-left: 14px;
+}
 
+.layout-horiz {
+  transform: rotate(90deg);
+}
 
-/* LAYOUT/UPLOAD/DOWNLOAD
+.help-btn svg,
+.set-layout__btn svg,
+.copy-markdown svg,
+.menu-btn svg { 
+  width: 20px;
+  height: 20px;
+}
+
+/* ICONS RIGHT
 ====================*/
 .header-col-2 {
   justify-content: flex-end;
@@ -39,30 +62,18 @@
   height: 100%;
 }
 
-.help-btn {
-  margin-left: 14px;
-}
-
-.help-btn svg,
-.set-layout__btn svg {
-  width: 20px;
-  height: 20px;
-}
-
-.layout-horiz {
-  transform: rotate(90deg);
-}
-
 .handle-markdown__btns {
   display: flex;
   justify-content: flex-end;
+  margin-left: 14px;
 }
 
-.save-markdown,
-.upload-markdown {
-  width: 72px;
+.save-markdown svg,
+.upload-markdown svg {
+  fill: var(--primary3);
 }
 
-.save-markdown {
-  margin-right: 6px;
+.save-markdown:hover svg,
+.upload-markdown:hover svg {
+  fill: var(--primarylight1);
 }

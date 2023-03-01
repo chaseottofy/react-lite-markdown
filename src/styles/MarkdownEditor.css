@@ -3,66 +3,58 @@
   max-height: calc(100vh - 68px);
   margin-top: 4px;
   width: 100%;
-  display: flex;
-  justify-content: space-between;
-  flex-direction: row;
-  position: relative;
-  overflow: hidden;
   z-index: 1;
 }
 
-.vert {
-  flex-direction: row;
-}
-
-.horiz {
-  flex-direction: column;
-}
-
-/* RESIZE HANDLE
-====================*/
-.markdown-resize {
-  position: absolute;
-}
-
-.vert .markdown-resize {
-  width: 8px;
-  height: calc(100vh - 68px);
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin: 0 auto;
-  cursor: col-resize;
-}
-
-.horiz .markdown-resize {
+.split {
+  display:flex;
   width: 100%;
-  height: 8px;
-  margin: auto 0;
-  top: 0;
-  bottom: 0;
+  height: 100%;
+}
+
+.horiz {flex-direction: row;}
+.vert {flex-direction: column;}
+
+.gutter {
+  background: var(--black2);
+  background-repeat: no-repeat;
+  background-position: 50%;
+}
+
+.gutter.gutter-horizontal {
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAFAQMAAABo7865AAAABlBMVEVHcEzMzMzyAv2sAAAAAXRSTlMAQObYZgAAABBJREFUeF5jOAMEEAIEEFwAn3kMwcB6I2AAAAAASUVORK5CYII=');
   cursor: row-resize;
 }
 
+.split.horiz .gutter {
+  width: 10px !important;
+  height: 100% !important;
+  cursor: col-resize;
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAeCAYAAADkftS9AAAAIklEQVQoU2M4c+bMfxAGAgYYmwGrIIiDjrELjpo5aiZeMwF+yNnOs5KSvgAAAABJRU5ErkJggg==');
+}
+
+.split.vert .gutter {
+  width: 100% !important;
+  height: 10px !important;
+  cursor: row-resize;
+}
 
 /* INPUT/OUTPUT CONTAINER
 ====================*/
-.markdown-editor {
-  width: 100%;
-  height: 100%;
-  display: flex;
-}
 
 .markdown-input,
-.markdown-preview {
+.output-wrapper {
   font-size: 16px;
   padding: 12px;
   line-height: 24px;
   overflow-y: auto;
   width: 100%;
   height: 100%;
-  background-color: var(--black1);
   color: var(--white1) !important;
+}
+.input-wrapper {
+  height: 100%;
+  width: 100%;
 }
 
 /* INPUT
@@ -70,8 +62,7 @@
 .markdown-input {
   font-family: monospace !important;
   resize: none;
-  border-right: 2px solid var(--mdgrey3);
-  border-bottom: 2px solid var(--mdgrey3);
+  background-color: var(--black1);
   background-image: none;
   transition: border-color ease-in-out 0.15s;
 }
@@ -99,38 +90,9 @@
 
 /* OUTPUT
 ====================*/
-.markdown-preview {
+.output-wrapper {
   width: 100%;
   height: 100%;
+  background: var(--black0);
   background-image: none;
-}
-
-/* COMMANDS - OUTPUT
-====================*/
-.command-header {
-  font-size: 26px !important;
-  line-height: 1.5;
-}
-
-.command-codeblock {
-  font-family: monospace !important;
-  color: var(--primarylight1);
-}
-
-.command-blue {
-  color: var(--primarylight1);
-}
-
-.temp-blue {
-  color: transparent;
-}
-
-
-
-@media screen and (max-width: 640px) {
-
-  .markdown-input,
-  .markdown-preview {
-    font-size: 14px;
-  }
 }

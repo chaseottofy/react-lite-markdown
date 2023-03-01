@@ -1,0 +1,100 @@
+.header1 {
+  font-size: 32px;
+  line-height: 1.4;
+  font-weight: 700;
+}
+
+.header2 {
+  font-size: 26px;
+  line-height: 1.4;
+  font-weight: 700;
+}
+
+.header3 {
+  font-size: 20px;
+  line-height: 1.4;
+  font-weight: 700;
+}
+
+.bold {
+  font-weight: 700 !important;
+}
+
+.hr {
+  border: none;
+  border-top: 1px solid var(--mdgrey2);
+  margin: 1em 0;
+}
+
+.link {
+  color: var(--primarylight1);
+  text-decoration: underline;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+.image {
+  max-width: 100%;
+  height: auto;
+}
+
+.pre {
+  border: 1px solid var(--mdgrey3);
+  box-shadow: var(--box-shadow2);
+  border-radius: 4px;
+  font-size: 14px;
+  line-height: 1.4;
+  padding: 1em;
+  overflow-x: auto;
+  width: min-content;
+}
+
+.pre::-webkit-scrollbar {
+  height: 15px;
+}
+
+.code {
+  font-family: monospace;
+  background: var(--black2);
+  padding: 4px;
+  color: var(--mdgrey1);
+}
+
+.blockquote {
+  background-color: var(--black2);
+  border-left: 4px solid var(--mdgrey2);
+  border-radius: 4px;
+  margin: 14px 0;
+  font-size: 16px;
+  padding: 12px 24px;
+  position: relative;
+  font-family: var(--primaryFont) !important;
+  font-weight: 400 !important;
+  width: auto;
+}
+
+.blockquote::before {
+  content: "\201C";
+  font-size: 2.4em;
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  bottom: 0.5em;
+  color: var(--white1);
+}
+
+.blockquote p:first-of-type {
+  margin-top: 0;
+}
+
+.blockquote p:last-of-type {
+  margin-bottom: 0;
+}
+
+.unordered-list {
+  list-style-type: disc;
+  background: var(--black2);
+  padding: 2px 8px;
+}

@@ -1,38 +1,44 @@
 import { IoIosMenu, IoMdClose, IoMdHelp } from "react-icons/io";
-import { RiLayoutColumnLine } from "react-icons/ri";
-import "../../styles/Header.css";
+import { RiLayoutColumnLine, RiFolderDownloadFill, RiFileUploadLine } from "react-icons/ri";
+import { VscCopy } from "react-icons/vsc";
 import Button from "./Button";
 import saveFile from "../../utils/saveFile";
 import uploadFile from "../../utils/uploadFile";
+import "../../styles/Header.css";
+
 
 export default function Header({
-  markdown,
-  setMarkdown,
+  html,
+  setHtml,
   sidebarState,
   setSidebarState,
   layoutState,
   setLayoutState,
-  setModalState,
 }) {
 
   return (
     <header className="header">
       <div className="header-col-1">
+        <h1 className="header-title">MD LITE</h1>
+        
         <Button
           btnclass="btn-svgpair menu-btn"
-          title={sidebarState ? <IoMdClose className="menu-icon" /> : <IoIosMenu className="menu-icon" />}
+          title={sidebarState ? <IoMdClose className="menu-icon" /> : <IoMdHelp className="menu-icon" />}
           onClick={() => setSidebarState((prev) => !prev)}
         />
+
         <Button
-          btnclass="btn-svgpair help-btn"
-          title={<IoMdHelp className="help-icon" />}
-          onClick={() => setModalState((prev) => !prev)}
-        />
-        <Button
-          btnclass={layoutState === "column" ? "btn-svgpair set-layout__btn" : "btn-svgpair set-layout__btn layout-horiz"}
+          btnclass={layoutState === "row" ? "btn-svgpair set-layout__btn" : "btn-svgpair set-layout__btn layout-horiz"}
           title={<RiLayoutColumnLine className="set-layout__icon" />}
           onClick={() => {
             setLayoutState(layoutState === "column" ? "row" : "column");
+          }}
+        />
+        <Button
+          btnclass="btn-svgpair copy-markdown"
+          title={<VscCopy className="copy-icon" />}
+          onClick={() => {
+            html.length === 0 ? alert("no markdown to copy") : navigator.clipboard.writeText(html.replace(/<br>/g, "\n"));
           }}
         />
       </div>
@@ -41,18 +47,14 @@ export default function Header({
       <div className="header-col-2">
         <div className="handle-markdown__btns">
           <Button
-            title="save"
-            btnclass="btn-primary primary-dark save-markdown"
-            onClick={() => {
-              markdown.length === 0 ? alert("no markdown to save") : saveFile({ list: markdown });
-            }}
+            btnclass="btn-svgpair save-markdown"
+            title={<RiFolderDownloadFill className="save-icon" />}
+            onClick={() => { html.length === 0 ? alert("no markdown to save") : saveFile({ html: html }); }}
           />
           <Button
-            title="upload"
-            btnclass="btn-dark upload-markdown"
-            onClick={() => {
-              uploadFile({ setMarkdown: setMarkdown });
-            }}
+            btnclass="btn-svgpair upload-markdown"
+            title={<RiFileUploadLine className="upload-icon" />}
+            onClick={() => { uploadFile({ setHtml: setHtml }); }}
           />
         </div>
       </div>

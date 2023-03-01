@@ -1,4 +1,4 @@
-export default function UploadFile({ setMarkdown }) {
+export default function UploadFile({ setHtml }) {
   // no database = easy validation
   const validateUpload = (data) => {
     if (!data) return false;
@@ -25,7 +25,7 @@ export default function UploadFile({ setMarkdown }) {
         alert("Invalid file");
         return;
       } else {
-        setMarkdown(() => JSON.parse(e.target.result))
+        setHtml(() => JSON.parse(e.target.result))
       }
     }
     reader.readAsText(file);
