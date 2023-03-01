@@ -3,7 +3,6 @@ import ParseLiteMarkdown from '../../features/ParseLiteMarkdown';
 import "../../styles/MarkdownEditor.css";
 import "../../styles/MarkdownCommands.css";
 
-
 export default function MarkdownRenderer(
   {
     html,

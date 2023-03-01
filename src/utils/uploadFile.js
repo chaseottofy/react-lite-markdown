@@ -1,5 +1,4 @@
 export default function UploadFile({ setHtml }) {
-  // no database = easy validation
   const validateUpload = (data) => {
     if (!data) return false;
     if (typeof data !== "string") return false;

@@ -1,7 +1,6 @@
 export default function ParseLiteMarkdown({ html }) {
   /**
-      LITE MARKDOWN
-
+    LITE MARKDOWN
     #                H1
     ##               H2
     ###              H3
@@ -11,7 +10,6 @@ export default function ParseLiteMarkdown({ html }) {
     <code></code>    codeblock
     >                blockquote
     - unordered      list
-
    */
   let lines = html.split('\n');
   const pattern = {
