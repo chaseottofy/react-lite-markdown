@@ -25,7 +25,7 @@ Features:
 *text*           bold
 [link](url)      link
 {url}            image
-<code></code>       codeblock
+<code></code>    codeblock
 >                blockquote
 - unordered      list
 ```
