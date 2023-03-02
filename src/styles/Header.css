@@ -1,12 +1,9 @@
 .header {
   height: 64px;
-  width: 100%;
   display: flex;
-  width: 100%;
   align-items: center;
   justify-content: space-between;
-  box-shadow: 2px 0px 6px 2px rgba(0, 0, 0, .4);
-  position: relative;
+  box-shadow: var(--box-shadow-header);
   z-index: 4;
 }
 
@@ -18,41 +15,34 @@
   width: 100%;
 }
 
-
 /* COLUMN ONE
 ====================*/
 .header-col-1 {
-  padding-left: 4px;
+  column-gap: 6px;
+  padding-left: 12px;
 }
 
 .header-title {
-  height: 100%;
-  width: min-content;
   font-size: 14px;
   font-weight: 700;
-  line-height: 1.4;
   letter-spacing: 1px;
   display: flex;
+  height: 40px;
   align-items: center;
   text-decoration: none;
   color: var(--primarylight1) !important;
-  padding: 0 12px 0 8px;
+  padding-top: 4px;
+  border-bottom: 2px solid transparent;
 }
 
-.help-btn {
-  margin-left: 14px;
+.header-title:focus-visible,
+.header-title:hover {
+  border-bottom: 2px solid var(--primarylight1);
 }
 
+/* rotate layout change svg */
 .layout-horiz {
   transform: rotate(90deg);
-}
-
-.help-btn svg,
-.set-layout__btn svg,
-.copy-markdown svg,
-.menu-btn svg {
-  width: 20px;
-  height: 20px;
 }
 
 /* ICONS RIGHT
@@ -63,24 +53,16 @@
   height: 100%;
 }
 
-.handle-markdown__btns {
-  display: flex;
-  justify-content: flex-end;
-  margin-left: 14px;
-}
-
 .save-markdown svg,
 .upload-markdown svg {
-  fill: var(--primary3);
-}
-
-.save-markdown:hover svg,
-.upload-markdown:hover svg {
   fill: var(--primarylight1);
 }
 
-@media screen and (max-width: 320px) {
-  .header-col-2 {
-    display:none;
+
+/* QUERIES
+====================*/
+@media screen and (max-width: 340px) {
+  .header-title {
+    display: none;
   }
 }

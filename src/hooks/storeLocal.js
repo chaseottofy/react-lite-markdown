@@ -1,12 +1,24 @@
-/*local storage*/
+// /*local storage*/
+class Storage {
+  constructor() {
+    this.storage = window.localStorage;
+  }
 
-const helper = {};
-helper.setStorage = (key, value) => {
-  window.localStorage.setItem(key, value);
+  set(key, value) {
+    this.storage.setItem(key, value);
+  }
+
+  get(key) {
+    return this.storage.getItem(key);
+  }
+
+  removeStore(key) {
+    this.storage.removeItem(key);
+  }
+
+  clearStore() {
+    this.storage.clear();
+  }
 }
 
-helper.getStorage = key => window.localStorage.getItem(key);
-
-helper.removeStorage = key => window.localStorage.removeItem(key);
-
-export default helper;
+export default new Storage();

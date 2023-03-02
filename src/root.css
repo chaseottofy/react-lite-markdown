@@ -1,3 +1,4 @@
+/* template by otto */
 @font-face {
   font-family: Optimistic Display;
   src: url('./assets/fonts/Optimistic_Display_W_Md.woff2') format('woff2');
@@ -32,52 +33,80 @@
 }
 
 :root {
-  /* color */
-  --white1: #d8f3f5;
-  --white2: #fafafa;
-  --black0: #0f1112;
-  --black1: #111314;
-  --black2: #1c1e1f;
-  --black3: #131516;
-  --mdgrey1: #a2c0dc;
-  --mdgrey2: #95a0a5;
-  --mdgrey3: #34393b;
-  --mdgrey4: #343637;
-  --primary1: #2874ae;
-  --primary2: #1666a2;
-  --primary3: #2F89CE;
-  --primarydark1: #174264;
-  --primarylight1: #3daafd;
-
+  /* color injected via theme__ classes in document root */
   /* font */
   --primaryFont: "Roboto", sans-serif;
   --secondaryFont: Optimistic Display, -apple-system, ui-sans-serif, system-ui, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif;
 
   /* webkit */
-  --scrollerThumbBackground: #3b4042;
+  --scrollerThumbBackground: #484e51;
   --scrollerThumbBorder: 4px solid var(--black1);
-  --scrollerThumbBackgroundHover: #484e51;
+  --scrollerThumbBackgroundHover: #505659;
   --scrollerTrackBackground: var(--black1);
 
   /* box-shadow */
-  --box-shadow1:
+  --box-shadow-md:
+    rgba(0, 0, 0, 0.2) 1px 2px 6px 1px,
+    rgba(0, 0, 0, 0.3) 0 3px 5px 0;
+  --box-shadow-xl:
     rgba(0, 0, 0, 0.14) 0px 8px 10px 1px,
     rgba(0, 0, 0, 0.12) 0px 3px 14px 2px,
     rgba(0, 0, 0, 0.2) 0px 2px 4px -1px;
-  --box-shadow2:
-    rgba(0, 0, 0, 0.2) 1px 2px 6px 1px,
-    rgba(0, 0, 0, 0.3) 0 3px 5px 0;
-  --box-shadow4:
-    rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
-    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
-
-  /* sizing */
-  --screenLg: 1024px;
-  --screenMd: 768px;
-  --screenSm: 530px;
-  --screenXs: 320px;
+  --box-shadow-header:
+    rgba(0, 0, 0, .4) 4px 0px 6px 0px,
+    rgba(0, 0, 0, .2) 8px 0px 10px 4px
+    ;
+  --box-shadow-sidebar:
+    rgba(0, 0, 0, 0.4) 0px 4px 6px 0px,
+    rgba(0, 0, 0, 0.2) 0px 8px 10px 4px;
 }
 
+/* themes
+====================*/
+.theme__dark {
+  --white1: #d8f3f5;
+  --white2: #fafafa;
+  --black0: #0f1112;
+  --black1: #111314;
+  --black2: #1c1e1f;
+  --mdgrey1: #a2c0dc;
+  --mdgrey2: #95a0a5;
+  --darkgrey1: #1c1e1f;
+  --primary1: #2874ae;
+  --primary2: #1666a2;
+  --primarylight1: #3daafd;
+}
+
+.theme__medium {
+  --white1: #c7ffff;
+  --white2: #c7ffff;
+  --black0: #0f1112;
+  --black1: #1e2326;
+  --black2: #2a3033;
+  --mdgrey1: #a2c0dc;
+  --mdgrey2: #95a0a5;
+  --darkgrey1: #1c1e1f;
+  --primary1: #76feff;
+  --primary2: #00C3C3;
+  --primarylight1: #25FFFF;
+}
+
+.theme__light {
+  --white1: #3c4043;
+  --white2: #3c4043;
+  --black0: #bfd0df;
+  --black1: #d3dbe3;
+  --black2: #b6d3ed;
+  --mdgrey1: #3c4043;
+  --mdgrey2: #3c4043;
+  --darkgrey1: #3c4043;
+  --primary1: #5693e8;
+  --primary2: #5693e8;
+  --primarylight1: #3c4043;
+}
+
+/* Reset
+====================*/
 html,
 body,
 div,
@@ -119,6 +148,7 @@ body {
   line-height: inherit;
   overflow: hidden;
   height: 100vh;
+  
 }
 
 button,
@@ -132,31 +162,48 @@ select {
 
 button:focus-visible,
 select:focus-visible {
-  border: 2px solid var(--mdgrey1);
   transition: 150ms ease-out;
+}
+
+textarea:focus {
+  outline: none;
+  border-color: var(--mdgrey2);
+}
+
+textarea::-webkit-scrollbar-thumb {
+  border: 4px solid var(--black1);
 }
 
 input::-moz-placeholder,
 textarea::-moz-placeholder {
   opacity: 1;
-  color: var(--mdgrey4);
+  color: var(--mdgrey2);
 }
 
 input:-ms-input-placeholder,
 textarea:-ms-input-placeholder {
   opacity: 1;
-  color: var(--mdgrey4);
+  color: var(--mdgrey2);
 }
 
 input::placeholder,
 textarea::placeholder {
   opacity: 1;
-  color: var(--mdgrey4);
+  color: var(--mdgrey2);
 }
 
 table {
   border-collapse: collapse;
   border-spacing: 0;
+  width: 100%;
+}
+
+td {
+  padding: 8px 0;
+}
+
+th {
+  text-align: left;
 }
 
 ul {
@@ -175,29 +222,32 @@ fieldset {
   border: none
 }
 
-[hidden] {
+/* use for focusable elements that are not currently on screen */
+/* pair with aria-disabled=true */
+[disabled] {
   display: none !important;
 }
 
+/* svg size really depends on the project but usually dimensions will be global */
 svg {
   user-select: none;
   pointer-events: none;
-  height: 24px;
-  width: 24px;
-  fill:var(--mdgrey1);
+  height: 20px;
+  width: 20px;
+  fill: var(--mdgrey1);
 }
 
 /* scrollbar
 ====================*/
 ::-webkit-scrollbar {
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
 }
 
 ::-webkit-scrollbar-thumb {
   background: var(--scrollerThumbBackground);
   border: var(--scrollerThumbBorder);
-  border-radius: 20px;
+  border-radius: 12px;
   min-height: 40px;
 }
 
@@ -206,7 +256,7 @@ svg {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--scrollerTrackBackground);
+  background: transparent;
 }
 
 
@@ -245,61 +295,63 @@ svg {
   margin-top: 4px;
 }
 
-
 /* Buttons / Select
 ====================*/
 .btn-primary,
+.select-primary,
 .btn-dark,
 .select-dark,
-.select-primary,
 .input-dark {
   color: var(--white1);
   border-radius: 4px;
   cursor: pointer;
   padding: 6px 10px;
+  transition: all 150ms ease-in-out;
 }
 
 .btn-primary,
 .select-primary {
-  background: var(--primary2);
-  border: 1px solid var(--mdgrey3);
-}
-
-.primary-dark {
-  background: var(--primarydark1);
-  border: 1px solid var(--mdgrey3);
+  background: var(--primary1);
+  border: 1px solid var(--black2);
 }
 
 .btn-dark,
 .select-dark,
 .input-dark {
   background: var(--black1);
-  border: 1px solid var(--mdgrey3);
+  border: 1px solid var(--black2);
 }
 
 .btn-primary:hover,
 .select-primary:hover {
   background: var(--primary1);
   border: 1px solid var(--primarylight1);
-  transition: 150ms ease-in-out;
 }
 
 .btn-dark:hover,
 .select-dark:hover {
   background: var(--black0);
-  border: 1px solid var(--primary2);
-  transition: 150ms ease-in-out;
+  border: 1px solid var(--primary1);
 }
 
+/* <button>  >>  <svg> */
 .btn-svgpair {
-  width: 40px;
-  height: 40px;
+  width: 36px;
+  height: 36px;
   border-radius: 24px;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  transition: background 145ms ease;
+  transition: all 150ms ease;
+}
+
+.btn-svgpair:focus-visible {
+  background: var(--black2);
+}
+
+.btn-svgpair:focus-visible svg {
+  fill: var(--primarylight1);
 }
 
 .btn-svgpair:hover {
@@ -308,6 +360,7 @@ svg {
 
 /* Textarea
 ====================*/
+/* make resizer grey and solid */
 .resizer-1::-webkit-resizer {
   border-width: 8px;
   border-style: solid;

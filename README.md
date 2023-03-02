@@ -11,7 +11,7 @@ Features:
 - editor and preview
 - horizontal and vertical layouts
 - horizontal and vertical resizing
-- word count
+- word and character counter
 - save to json file
 - upload from json file
 - copy to clipboard

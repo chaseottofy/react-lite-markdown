@@ -1,4 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import store from "./hooks/storeLocal";
+import handleTheme from "./hooks/handleTheme";
 import './styles/App.css';
 import {
   Sidebar,
@@ -10,6 +12,26 @@ function App() {
   const [html, setHtml] = useState('');
   const [sidebarState, setSidebarState] = useState(false);
   const [layoutState, setLayoutState] = useState("row");
+  const [theme, setTheme] = useState("theme__light");
+
+  useEffect(() => {
+    const localHtml = store.get('html');
+    if (localHtml) {
+      setHtml(localHtml);
+    }
+  }, []);
+
+  useEffect(() => { store.set('html', html); }, [html]);
+
+  useEffect(() => {
+    const localTheme = store.get('theme');
+    if (localTheme) {
+      const root = document.documentElement;
+      setTheme(localTheme);
+      root.removeAttribute("class");
+      root.classList.add(localTheme);
+    }
+  }, []);
 
   return (
     <div className="main-app">
@@ -24,6 +46,8 @@ function App() {
           setSidebarState={setSidebarState}
           layoutState={layoutState}
           setLayoutState={setLayoutState}
+          theme={theme}
+          handleTheme={() => handleTheme({ store, setTheme })}
         />
         <MarkdownRenderer
           html={html}

@@ -1,19 +1,20 @@
-.header1 {
-  font-size: 32px;
+.header1,
+.header2,
+.header3 {
   line-height: 1.4;
   font-weight: 700;
+}
+
+.header1 {
+  font-size: 32px;
 }
 
 .header2 {
   font-size: 26px;
-  line-height: 1.4;
-  font-weight: 700;
 }
 
 .header3 {
   font-size: 20px;
-  line-height: 1.4;
-  font-weight: 700;
 }
 
 .bold {
@@ -41,17 +42,14 @@
 }
 
 .pre {
-  border: 1px solid var(--mdgrey3);
-  box-shadow: var(--box-shadow2);
+  border: 1px solid var(--black2);
+  box-shadow: var(--box-shadow-md);
   border-radius: 4px;
   font-size: 14px;
   line-height: 1.4;
   padding: 1em;
-  /* overflow-x: auto; */
   overflow:hidden;
-  /* white-space: nowrap; */
   white-space:pre-wrap;
-  /* width: min-content; */
 }
 
 .pre::-webkit-scrollbar {
@@ -63,7 +61,6 @@
   background: var(--black2);
   padding: 4px;
   color: var(--mdgrey1);
-  /* width: 100%; */
 }
 
 .blockquote {
@@ -80,6 +77,7 @@
 }
 
 .blockquote::before {
+  /* "\201C" === quotation mark */
   content: "\201C";
   font-size: 2.4em;
   position: absolute;
@@ -87,14 +85,6 @@
   left: 4px;
   bottom: 0.5em;
   color: var(--white1);
-}
-
-.blockquote p:first-of-type {
-  margin-top: 0;
-}
-
-.blockquote p:last-of-type {
-  margin-bottom: 0;
 }
 
 .unordered-list {
