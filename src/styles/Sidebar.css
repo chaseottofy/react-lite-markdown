@@ -1,9 +1,9 @@
 .sidebar {
-  width: 50%;
+  width: 530px;
   position: fixed;
   left: 0;
   bottom: 0;
-  height: calc(100vh - 64px);
+  height: calc(100vh - var(--headerHeight));
   background: var(--black1);
   display: flex;
   flex-direction: column;
@@ -19,7 +19,7 @@
 }
 
 .hide-sidebar {
-  transform: translateX(-100%);
+  transform: translateX(-530px);
   box-shadow: none !important;
   user-select: none;
   pointer-events: none;
@@ -48,7 +48,6 @@
   height: 42px;
   width: 42px;
   border-radius: 21px;
-  font-family: monospace !important;
   background: var(--mdgrey2);
   color: var(--black1);
   font-weight: 600;
@@ -84,33 +83,6 @@
   width: 100%;
   height: 2px;
   border-bottom: 2px solid var(--mdgrey2);
-}
-
-/* FOOTER
-====================*/
-.sidebar-footer {
-  height: 48px;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  column-gap: 8px;
-  margin-top: auto;
-}
-
-.sidebar-footer a:focus-visible svg {
-  fill: var(--primarylight1);
-}
-
-.sidebar-footer p {
-  color: var(--mdgrey1);
-  font-size: 12px;
-  letter-spacing: 1.2px;
-}
-
-.git-link {
-  height: 28px;
-  width: 28px;
 }
 
 /* QUERY

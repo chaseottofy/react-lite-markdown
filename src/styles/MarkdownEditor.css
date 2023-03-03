@@ -1,75 +1,51 @@
+/* input/textarea reset
+=======================*/
 .markdown-container {
-  height: calc(100vh - 64px);
-  max-height: calc(100vh - 64px);
+  height: calc(100vh - var(--headerHeight));
+  max-height: calc(100vh - var(--headerHeight));
   width: 100%;
   z-index: 1;
   position: relative;
+  padding-bottom: var(--footerHeight);
+  font-size: 16px;
 }
 
 /* LINE COUNTER
 ===========================*/
 .line-position {
   position: absolute;
-  font-family: monospace !important;
-  width: 28px;
+  width: var(--numberswidth);
   left: 0;
   top: 0;
-  height: 100%;
-  display:flex;
+  padding-top: 12px;
+  padding-bottom: var(--footerHeight);
+  display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-end;
   overflow: hidden;
-  border-right: 1px solid var(--darkgrey1);
+  border-right: 1px solid var(--scrollthumb);
   z-index: 5;
   margin-top: 0;
-  padding-top: 12px;
-  padding-bottom: 12px;
+  background: var(--black3);
 }
 
 .line-number {
-  font-size: 12px;
-  line-height: 24px;
-  letter-spacing: 1px;
+  font-size: 0.82em;
+  display: inline;
+  line-height: var(--lineheight);
   width: 100%;
-  color: var(--white1);
+  color: var(--white2);
   text-align: right;
-  padding-right: 4px;
-}
-
-.line-number:last-child {
-  color: transparent;
-}
-
-/* WORD COUNTER
-===========================*/
-.word-count {
-  position: absolute;
-  font-family: monospace !important;
-  font-size: 12px;
-  letter-spacing: 1px;
-  color: var(--white1);
-  top: 4px;
-  right: 16px;
-  z-index: 12;
-  cursor: pointer;
-  padding: 0 6px;
-  user-select: none;
-}
-
-.word-count:hover {
-  background: var(--black2);
-}
-
-.word-count-hide {
-  display: none;
+  padding-right: 6px;
 }
 
 /* INPUT/OUTPUT CONTAINER
 ===========================*/
 .split {
   display: flex;
-  width: 100%;
+  width: calc(100% - var(--numberswidth));
+  margin-left: auto;
   height: 100%;
 }
 
@@ -79,15 +55,20 @@
 
 .vert {
   flex-direction: column;
+  width: 100%;
 }
 
 /* RESIZE HANDLE
 ===========================*/
 .gutter {
-  background-color: var(--darkgrey1);
+  background-color: var(--overlaymd);
   background-repeat: no-repeat;
   background-position: 50%;
   z-index: 100;
+}
+
+.gutter:hover {
+  background-color: var(--overlaylg);
 }
 
 .gutter.gutter-vertical,
@@ -104,11 +85,11 @@
 
 .split.vert .gutter {
   width: 100% !important;
-  height: 10px !important;
+  height: 12px !important;
 }
 
 .split.horiz .gutter {
-  width: 10px !important;
+  width: 12px !important;
   height: 100% !important;
 }
 
@@ -116,32 +97,54 @@
 ===========================*/
 .markdown-input,
 .output-wrapper {
-  font-size: 16px;
-  line-height: 24px;
+  font-size: 1em;
+  line-height: var(--lineheight) !important;
   overflow-y: auto;
   word-wrap: break-word;
   width: 100%;
   height: 100%;
   color: var(--white1) !important;
+  padding-top:12px;
+  padding-bottom: var(--footerHeight);
+  padding-left: 2px;
+}
+
+.vert .markdown-input,
+.vert .output-wrapper {
+  padding-left: calc(var(--numberswidth) + 2px);
 }
 
 .input-wrapper {
-  height: 100%;
   width: 100%;
-  overflow:hidden;
+  overflow: hidden;
 }
 
 /* INPUT
 ====================*/
 .markdown-input {
-  padding: 12px 4px 12px 36px;
-  font-family: monospace !important;
   resize: none;
+  border: none;
+  outline: none;
   text-overflow: clip;
-  overflow-x:hidden;
+  letter-spacing: var(--letterspacing) !important;
+  overflow-x: hidden;
   background-color: var(--black1);
   background-image: none;
   transition: border-color ease-in-out 0.15s;
+}
+
+/* ./INPUT/LINE HIGHLIGHT
+===========================*/
+.line-highlight {
+  position: absolute;
+  height: var(--lineheight);
+  width: 100%;
+  background: var(--overlaysm);
+  z-index: 5;
+  left: 0;
+  transform: translateX(0%);
+  pointer-events: none;
+  user-select: none;
 }
 
 .markdown-input::-webkit-resizer {
@@ -155,12 +158,105 @@
   height: 100%;
   background: var(--black0);
   background-image: none;
-  padding: 12px 18px 12px 18px;
+  letter-spacing: var(--letterspacing) !important;
   position: relative;
   overflow-x: hidden;
-  z-index: 8;
+  z-index: 11;
+  font-weight: 500;
 }
 
 .output-wrapper::-webkit-scrollbar-thumb {
   border: 4px solid var(--black0);
+}
+
+.output-wrapper>* {
+  margin: 0;
+}
+
+.output-wrapper>br {
+  display: block;
+}
+
+/* FOOTER
+=======================*/
+.markdown-footer {
+  position: absolute;
+  bottom: 0;
+  height: var(--footerHeight);
+  background: var(--primary3);
+  width: 100%;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: .75em;
+  color: #fff;
+  font-weight: 400;
+  line-height: var(--footerHeight) !important;
+}
+
+.markdown-footer__col1,
+.markdown-footer__col2 {
+  display: flex;
+  width: 100%;
+  align-items: center;
+}
+
+.markdown-footer__col1 {
+  justify-content: flex-start;
+  column-gap: 4px;
+  padding-left: 8px;
+}
+
+.footer-title {
+  font-weight: 500;
+  color: #fff;
+}
+
+.markdown-footer__col1 div {
+  display: flex;
+  column-gap: 4px;
+  align-items: center;
+  padding-right: 12px;
+}
+
+.markdown-footer__col1 div span:first-child {
+  font-weight: 700 !important;
+}
+
+.markdown-footer__col2 {
+  justify-content: flex-end;
+  column-gap: 4px;
+}
+
+.git-link__wrapper {
+  color: #fff;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  column-gap: 4px;
+  padding: 0 8px;
+  height: 100%;
+  background: var(--overlaysm);
+}
+
+.git-link__wrapper:hover {
+  background: var(--overlaylg);
+}
+
+.git-link {
+  height: 18px;
+  width: 18px;
+  fill: #fff;
+}
+
+
+@media screen and (max-width: 460px) {
+  .markdown-container {
+    font-size: 14px;
+  }
+
+  .markdown-footer__col1 div:first-child {
+    display: none;
+  }
 }

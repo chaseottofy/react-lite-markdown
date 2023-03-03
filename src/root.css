@@ -1,43 +1,41 @@
-/* template by otto */
-@font-face {
-  font-family: Optimistic Display;
-  src: url('./assets/fonts/Optimistic_Display_W_Md.woff2') format('woff2');
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
+/* template by https://github.com/chaseottofy */
 
+/* roboto-mono-regular - latin */
 @font-face {
-  font-family: Optimistic Display;
-  src: url('./assets/fonts/Optimistic_Display_W_Bd.woff2') format('woff2');
-  font-weight: 700;
-  font-style: normal;
   font-display: swap;
-}
-
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: local('Roboto Medium'), local('Roboto-Medium'),
-    url('./assets/fonts/roboto-v30-latin-500.woff2') format('woff2');
-}
-
-@font-face {
-  font-family: 'Roboto';
+  font-family: 'Roboto Mono';
   font-style: normal;
   font-weight: 400;
+  src: url('./assets/fonts/roboto-mono-v22-latin-regular.woff2') format('woff2'),
+}
+
+/* roboto-mono-500 - latin */
+@font-face {
   font-display: swap;
-  src: local('Roboto'), local('Roboto-Regular') url('./assets/fonts/roboto-v30-latin-regular.woff2') format('woff2');
+  font-family: 'Roboto Mono';
+  font-style: normal;
+  font-weight: 500;
+  src: url('./assets/fonts/roboto-mono-v22-latin-500.woff2') format('woff2'),
+}
+
+/* roboto-mono-700 - latin */
+@font-face {
+  font-display: swap;
+  font-family: 'Roboto Mono';
+  font-style: normal;
+  font-weight: 700;
+  src: url('./assets/fonts/roboto-mono-v22-latin-700.woff2') format('woff2'),
 }
 
 :root {
   /* color injected via theme__ classes in document root */
   /* font */
-  --primaryFont: "Roboto", sans-serif;
-  --secondaryFont: Optimistic Display, -apple-system, ui-sans-serif, system-ui, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif;
-
+  --primaryFont: "Roboto Mono", monospace;
+  --headerHeight: 52px;
+  --footerHeight: 20px;
+  --lineheight: 20px;
+  --letterspacing: -0.5px;
+  --numberswidth: 28px;
   /* box-shadow */
   --box-shadow-md:
     rgba(0, 0, 0, 0.2) 1px 2px 6px 1px,
@@ -58,51 +56,76 @@
 ====================*/
 .theme__dark {
   --white1: #d8f3f5;
-  --white2: #fafafa;
-  --black0: #0f1112;
+  --white2: #e9f1f8;
+  --black0: #0e1011;
   --black1: #111314;
   --black2: #1c1e1f;
+  --black3: rgba(28, 30, 31, 0.8);
   --mdgrey1: #a2c0dc;
   --mdgrey2: #95a0a5;
   --darkgrey1: #1c1e1f;
   --primary1: #2874ae;
   --primary2: #1666a2;
-  --primarylight1: #3daafd;
+  --primary3: #1656ae;
+  --primarylight1: #44adfd;
+  --primarylight2: #44adfd;
+  --overlaylg: rgba(0, 0, 0, .5);
+  --overlaymd: rgba(0, 0, 0, .3);
+  --overlaysm: rgba(0, 0, 0, 0.2);
+  --tooltipbg: rgb(43, 44, 44);
+  --tooltipcolor: #e4ffff;
   --scrollthumb: #484e51;
   --scrollthumbhover: #505659;
 }
 
 .theme__medium {
   --white1: #c7ffff;
-  --white2: #c7ffff;
+  --white2: #a1d4d4;
   --black0: #0f1112;
   --black1: #1e2326;
   --black2: #2a3033;
+  --black3: rgba(42, 48, 51, 0.8);
   --mdgrey1: #a2c0dc;
   --mdgrey2: #95a0a5;
   --darkgrey1: #1c1e1f;
   --primary1: #76feff;
   --primary2: #00C3C3;
+  --primary3: #111414;
   --primarylight1: #25FFFF;
+  --primarylight2: #25FFFF;
+  --overlaylg: rgba(0, 0, 0, 0.7);
+  --overlaymd: rgba(0, 0, 0, 0.6);
+  --overlaysm: rgba(0, 0, 0, 0.2);
+  --tooltipbg: #3d3e3e;
+  --tooltipcolor: #e6ffff;
   --scrollthumb: #484e51;
   --scrollthumbhover: #505659;
 }
 
 .theme__light {
   --white1: #3c4043;
-  --white2: #3c4043;
-  --black0: #bfd0df;
-  --black1: #d3dbe3;
-  --black2: #b6d3ed;
+  --white2: #384046;
+  --black0: #f2f5f8;
+  --black1: #eff3f7;
+  --black2: #d0def1;
+  --black3: #d7e1ee;
   --mdgrey1: #3c4043;
   --mdgrey2: #3c4043;
   --darkgrey1: #3c4043;
   --primary1: #5693e8;
   --primary2: #5693e8;
-  --primarylight1: #3c4043;
+  --primary3: #1656ae;
+  --primarylight1: #111314;
+  --primarylight2: #3c4043;
+  --overlaylg: rgba(0, 0, 0, 0.7);
+  --overlaymd: #727474;
+  --overlaysm: rgba(0, 0, 0, 0.2);
+  --tooltipbg: #303030;
+  --tooltipcolor: #fff;
   --scrollthumb: #778085;
   --scrollthumbhover: #666d71;
 }
+
 
 /* base reset
 ====================*/
@@ -118,12 +141,10 @@ h4,
 form,
 input,
 textarea,
-p,
-th,
-td {
+p {
   padding: 0;
-  margin: 0;
   vertical-align: baseline;
+  margin: 0;
   border: 0;
 }
 
@@ -132,12 +153,12 @@ td {
 :after {
   box-sizing: border-box;
   -moz-box-sizing: border-box;
+  font-family: var(--primaryFont) !important;
 }
 
 html {
-  line-height: 1.15;
   -webkit-text-size-adjust: 100%;
-  font-family: var(--secondaryFont);
+  font-family: var(--primaryFont);
   font-weight: 400;
 }
 
@@ -145,9 +166,9 @@ body {
   background: var(--black1);
   color: var(--white1);
   line-height: inherit;
+  font-family: var(--primaryFont) !important;
   overflow: hidden;
   height: 100vh;
-
 }
 
 /* button/select reset
@@ -201,13 +222,13 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
   width: 100%;
+  background: var(--black0);
 }
 
 tr {
   height: 72px;
-  border-bottom: 1px solid var(--mdgrey2);
+  border-bottom: 1px solid var(--darkgrey1);
   display: flex;
-  align-items: center;
   justify-content: space-between;
 }
 
@@ -215,25 +236,26 @@ tr:last-child {
   border-bottom: 1px solid transparent;
 }
 
+thead tr:first-child {
+  height: 48px;
+  text-align: left;
+}
+
 th {
   font-weight: 700;
   font-size: 16px;
-  background: var(--black2);
   color: var(--white1);
   text-transform: uppercase;
   letter-spacing: 1px;
-  border: 1px solid var(--mdgrey2);
-  border-left: none;
-  border-top: none;
+  border-bottom: 1px solid var(--darkgrey1);
   width: 100%;
-  height: 72px;
-  line-height: 72px;
+  height: 48px;
+  line-height: 48px;
   margin-top: auto;
   padding-left: 8px;
 }
 
 td {
-  border-right: 1px solid var(--mdgrey2);
   width: 100%;
   height: 100%;
   display: flex;
@@ -241,8 +263,8 @@ td {
   padding: 8px;
 }
 
-th {
-  text-align: left;
+td:first-child {
+  border-right: 1px solid var(--darkgrey1);
 }
 
 ul {
@@ -251,7 +273,7 @@ ul {
 
 a {
   outline: 0;
-  color: var(--primarylight1);
+  color: var(--primarylight2);
 }
 
 a img,
@@ -261,9 +283,9 @@ fieldset {
   border: none
 }
 
-/* use for focusable elements that are not currently on screen */
-/* pair with aria-disabled=true */
 [disabled] {
+  /* use for focusable elements that are not currently on screen */
+  /* pair with aria-disabled=true */
   display: none !important;
 }
 
@@ -278,13 +300,13 @@ svg {
 /* scrollbar
 ====================*/
 ::-webkit-scrollbar {
-  width: 18px;
+  width: 15px;
   height: 18px;
 }
 
 ::-webkit-scrollbar-thumb {
   background: var(--scrollthumb);
-  border: var(--scrollthumb);
+  border: 2px solid var(--black1);
   border-radius: 12px;
 }
 
@@ -299,6 +321,79 @@ svg {
 
 /* resusable classes
 ==================================================== */
+/* TOOLTIP
+====================*/
+.tooltip-container {
+  position: relative;
+}
+
+.tooltip-trigger {
+  display: inline-block;
+  cursor: pointer;
+}
+
+.tooltip {
+  position: absolute;
+  padding: 6px 10px;
+  border-radius: 4px;
+  width: auto;
+  white-space: nowrap;
+  background: transparent;
+  color: var(--tooltipcolor);
+  background: var(--tooltipbg);
+  font-family: var(--primaryFont);
+  font-size: 12px;
+  /* letter-spacing: -0.5px; */
+  font-weight: 500;
+  line-height: 1.5;
+  z-index: 999;
+  opacity: 1;
+}
+
+.top::before,
+.bottom::before,
+.right::before,
+.left::before {
+  content: "";
+  position: absolute;
+  border-style: solid;
+  border-color: transparent;
+  border-width: 6px;
+  border-style: solid;
+}
+
+.top::before,
+.bottom::before {
+  margin-left: -6px;
+  left: 50%;
+}
+
+.top::before {
+  top: 92%;
+  border-color: var(--tooltipbg) transparent transparent transparent;
+}
+
+.bottom::before {
+  bottom: 92%;
+  border-color: transparent transparent var(--tooltipbg) transparent;
+}
+
+.right::before,
+.left::before {
+  top: 50%;
+  margin-top: -6px;
+}
+
+.right::before {
+  right: 98%;
+  border-color: transparent var(--tooltipbg) transparent transparent;
+}
+
+.left::before {
+  left: 98%;
+  border-color: transparent transparent transparent var(--tooltipbg);
+}
+
 /* flex
 ====================*/
 .flx-center-y {
@@ -343,7 +438,8 @@ svg {
   border-radius: 4px;
   cursor: pointer;
   padding: 6px 10px;
-  transition: all 150ms ease-in-out;
+  outline: 1px solid transparent;
+  transition: all 200ms ease-in-out;
 }
 
 .btn-primary,
@@ -362,7 +458,7 @@ svg {
 .btn-primary:hover,
 .select-primary:hover {
   background: var(--primary1);
-  border: 1px solid var(--primarylight1);
+  border: 1px solid var(--primarylight2);
 }
 
 .btn-dark:hover,
@@ -371,16 +467,27 @@ svg {
   border: 1px solid var(--primary1);
 }
 
+.btn-primary:active,
+.select-primary:active,
+.btn-dark:active,
+.select-dark:active,
+.input-dark:active,
+.btn-svgpair:active {
+  outline: 4px solid var(--black2);
+  filter: brightness(0.8);
+}
+
 /* <button>  >>  <svg> */
 .btn-svgpair {
   width: 36px;
   height: 36px;
-  border-radius: 24px;
+  border-radius: 50%;
   display: flex;
+  outline: 1px solid transparent;
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  transition: all 150ms ease;
+  transition: all 200ms ease;
 }
 
 .btn-svgpair:focus-visible {
@@ -388,6 +495,10 @@ svg {
 }
 
 .btn-svgpair:focus-visible svg {
+  fill: var(--primarylight2);
+}
+
+.btn-svgpair:hover svg {
   fill: var(--primarylight1);
 }
 
@@ -397,8 +508,8 @@ svg {
 
 /* Textarea
 ====================*/
-/* make resizer grey and solid */
 .resizer-1::-webkit-resizer {
+  /* make resizer grey and solid */
   border-width: 8px;
   border-style: solid;
   border-color: transparent var(--mdgrey2) var(--mdgrey2) transparent;
@@ -419,5 +530,5 @@ svg {
 /* Testing
 ====================*/
 .debug {
-  border: 1px solid red;
+  border: 1px solid red !important;
 }

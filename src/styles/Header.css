@@ -1,9 +1,9 @@
 .header {
-  height: 64px;
+  height: var(--headerHeight);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  box-shadow: var(--box-shadow-header);
+  box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.3);
   position: relative;
   z-index: 8;
 }
@@ -31,14 +31,14 @@
   height: 40px;
   align-items: center;
   text-decoration: none;
-  color: var(--primarylight1) !important;
+  color: var(--primarylight2) !important;
   padding-top: 4px;
   border-bottom: 2px solid transparent;
 }
 
 .header-title:focus-visible,
 .header-title:hover {
-  border-bottom: 2px solid var(--primarylight1);
+  border-bottom: 2px solid var(--primarylight2);
 }
 
 /* rotate layout change svg */
@@ -52,11 +52,12 @@
   justify-content: flex-end;
   padding-right: 4px;
   height: 100%;
+  column-gap: 6px;
 }
 
 .save-markdown svg,
 .upload-markdown svg {
-  fill: var(--primarylight1);
+  fill: var(--primarylight2);
 }
 
 

@@ -1,30 +1,33 @@
+/* COMMANDS
+=======================*/
 .header1,
 .header2,
 .header3 {
-  line-height: 1.4;
+  line-height: var(--lineheight);
   font-weight: 700;
 }
 
 .header1 {
-  font-size: 32px;
+  font-size: 2em;
 }
 
 .header2 {
-  font-size: 26px;
+  font-size: 1.625em;
 }
 
 .header3 {
-  font-size: 20px;
+  font-size: 1.25em;
 }
 
 .bold {
+  line-height: var(--lineheight);
   font-weight: 700 !important;
 }
 
-.hr {
+.fake-br {
+  display:block;
   border: none;
-  border-top: 1px solid var(--mdgrey2);
-  margin: 1em 0;
+  height: var(--lineheight) !important;
 }
 
 .link {
@@ -42,24 +45,26 @@
 }
 
 .pre {
-  border: 1px solid var(--black2);
   box-shadow: var(--box-shadow-md);
   border-radius: 4px;
-  font-size: 14px;
-  line-height: 1.4;
-  padding: 1em;
+  font-size: 0.875em;
+  height: var(--lineheight);
+  margin: 0;
+  padding: 0px 4px;
   overflow:hidden;
   white-space:pre-wrap;
 }
 
 .pre::-webkit-scrollbar {
-  height: 15px;
+  height: 12px;
 }
 
 .code {
-  font-family: monospace;
   background: var(--black2);
-  padding: 4px;
+  padding: 0 4px;
+  padding: 0;
+  margin: 0;
+  line-height: var(--lineheight);
   color: var(--mdgrey1);
 }
 
@@ -67,28 +72,21 @@
   background-color: var(--black2);
   border-left: 4px solid var(--mdgrey2);
   border-radius: 4px;
-  margin: 14px 0;
-  font-size: 16px;
-  padding: 12px 24px;
+  font-size: 0.875em;
+  font-weight: 500;
   position: relative;
-  font-family: var(--primaryFont) !important;
-  font-weight: 400 !important;
+  padding: 0 4px;
   width: auto;
 }
 
-.blockquote::before {
-  /* "\201C" === quotation mark */
-  content: "\201C";
-  font-size: 2.4em;
-  position: absolute;
-  top: 4px;
-  left: 4px;
-  bottom: 0.5em;
-  color: var(--white1);
+.unordered-list {
+  list-style-type: none;
+  background: var(--black2);
+  padding: 0 8px;
+  position: relative;
 }
 
-.unordered-list {
-  list-style-type: disc;
-  background: var(--black2);
-  padding: 2px 8px;
+/* use pseudo for list-style-top because firefox is dumb sometimes even though mozilla is basically funded by google aka chromium */
+.unordered-list::before {
+  content: "• ";
 }

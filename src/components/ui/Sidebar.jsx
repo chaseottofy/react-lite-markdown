@@ -1,33 +1,39 @@
 import "../../styles/Sidebar.css";
 import { AiFillGithub } from "react-icons/ai";
 
+/**
+ * Sidebar
+ * @param {boolean} sidebarState
+ * @returns {Component}
+ * @description lists markdown commands in table
+ */
 export default function Sidebar({ sidebarState }) {
   return (
     <div className={sidebarState ? "sidebar show-sidebar" : "sidebar hide-sidebar"}>
       <div className="sidebar-body">
         <table>
 
-          <thead>
+          {/* <thead>
             <tr>
-              <th>Markdown</th>
+              <th>Command</th>
               <th>Output</th>
             </tr>
-          </thead>
+          </thead> */}
 
 
           <tbody>
             <tr>
-              <td><h1 className="header1">#</h1></td>
+              <td><h1 className="header1"># ...</h1></td>
               <td><h1 className="header1">Header 1</h1></td>
             </tr>
 
             <tr>
-              <td><h2 className="header2">##</h2></td>
+              <td><h2 className="header2">## ...</h2></td>
               <td><h2 className="header2">Header 2</h2></td>
             </tr>
 
             <tr>
-              <td><h3 className="header3">###</h3></td>
+              <td><h3 className="header3">### ...</h3></td>
               <td><h3 className="header3">Header 3</h3></td>
             </tr>
 
@@ -66,14 +72,14 @@ export default function Sidebar({ sidebarState }) {
               <td><p className="blockquote">blockquote</p></td>
             </tr>
 
-            <tr>
+            {/* <tr>
               <td>&lt;code&gt;...&lt;/code&gt;</td>
               <td>
                 <pre className="pre">
                   <code className="code">hello()</code>
                 </pre>
               </td>
-            </tr>
+            </tr> */}
 
             <tr>
               <td>
@@ -86,21 +92,6 @@ export default function Sidebar({ sidebarState }) {
 
           </tbody>
         </table>
-      </div>
-
-      <div className="sidebar-footer">
-        <p>by Chase Ottofy</p>
-        <a
-          title="github repo link"
-          rel="noreferrer"
-          href="https://github.com/chaseottofy/react-lite-markdown"
-          target="_blank"
-          aria-disabled={!sidebarState}
-          disabled={!sidebarState}
-          role="link"
-        >
-          <AiFillGithub className="git-link" />
-        </a>
       </div>
     </div>
   );

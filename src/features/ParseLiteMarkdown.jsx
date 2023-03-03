@@ -1,3 +1,4 @@
+// import { useState } from "react";
 /**
   #, ##, ###          H1, H2, H3
   *text*              bold
@@ -11,12 +12,15 @@
 
  * ParseLiteMarkdown
  * @param {string} html
- * @returns {JSX.Element}
+ * @returns {React.element}
  * @listens e.target - textarea - ./components/ui/MarkdownRenderer
  * @description only supports h1, h2, h3, bold, link, image, codeblock, blockquote, unordered list.
  */
 export default function ParseLiteMarkdown({ html }) {
+  // only parse the second <br> tag
+  // const [prevHtml, setPrevHtml] = useState("");
   let lines = html.split('\n');
+
   const pattern = {
     header1: {
       regex: /^# (.+)/,
@@ -111,29 +115,28 @@ export default function ParseLiteMarkdown({ html }) {
 
     /* CODE <code>text</code> */
     // 
-    if (pattern.code.regex.test(line)) {
-      let currcode = line.match(pattern.code.regex);
-      let codesplit = line.split(pattern.code.regex);
-      return (
-        <div key={i}>
-          {
-            codesplit.map((text, idx) => {
-              // slice <code></code>
-              if (text === currcode[0].slice(6, -7)) {
-                return (
-                  <pre key={idx} className="pre">
-                    <code key={idx} className={pattern.code.class}>
-                      {text}
-                    </code>
-                  </pre>
-                );
-              }
-              return <span key={idx}>{text}</span>;
-            })
-          }
-        </div>
-      );
-    }
+    // if (pattern.code.regex.test(line)) {
+    //   let currcode = line.match(pattern.code.regex);
+    //   let codesplit = line.split(pattern.code.regex);
+    //   return (
+    //     <div key={i}>
+    //       {
+    //         codesplit.map((text, idx) => {
+    //           if (text === currcode[0].slice(6, -7)) {
+    //             return (
+    //               <pre key={idx} className="pre">
+    //                 <code key={idx} className={pattern.code.class}>
+    //                   {text}
+    //                 </code>
+    //               </pre>
+    //             );
+    //           }
+    //           return <span key={idx}>{text}</span>;
+    //         })
+    //       }
+    //     </div>
+    //   );
+    // }
 
     /* LINEBREAK : ___ */
     if (pattern.hr.regex.test(line)) {
@@ -171,24 +174,24 @@ export default function ParseLiteMarkdown({ html }) {
     /* BLOCKQUOTE : > text */
     if (pattern.blockquote.regex.test(line)) {
       return (
-        <blockquote key={i} className={pattern.blockquote.class}>
+        <div key={i} className={pattern.blockquote.class}>
           {line.match(pattern.blockquote.regex)[1]}
-        </blockquote>
+        </div>
       );
     }
 
     /* UNORDERED LIST : - text */
     if (pattern.unorderedList.regex.test(line)) {
       return (
-        <li key={i} className={pattern.unorderedList.class}>
+        <p key={i} className={pattern.unorderedList.class}>
           {line.match(pattern.unorderedList.regex)[1]}
-        </li>
+        </p>
       );
     }
 
     /* EMPTY */
     if (line === "") {
-      return <br key={i} />;
+      return <span key={i} className="fake-br"></span>
     }
 
     /* Default */

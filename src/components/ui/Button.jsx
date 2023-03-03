@@ -1,3 +1,12 @@
+
+/**
+ * @Component Button
+ * @param {string} id
+ * @param {string} btnclass
+ * @param {React.element} title
+ * @param {function} onClick
+ */
+
 export default function Button({ id, btnclass, title, onClick }) {
   return (
     <button
