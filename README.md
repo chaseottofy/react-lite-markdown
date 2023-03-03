@@ -1,6 +1,6 @@
 # markdown lite
 
-What separates this from many other react markdown editors is the avoidance of dangerouslySetInnerHTML and the ability to resize the editor/preview panels. It also incorporates a dynamic numbered line system (similar to notepad++), along with three contrast-safe themes, local storage, and a file upload/download system.
+What separates this from many other react markdown editors is the avoidance of dangerouslySetInnerHTML and the ability to resize the editor/preview panels. It also incorporates a dynamic numbered line system (similar to notepad++), along with three contrast-accessible themes, local storage, and a file upload/download system.
 
 Note that this is not traditional markdown. I've kept things limited to purely what I find useful/use most of the time.
 
@@ -10,13 +10,15 @@ Features:
 
 - Lighthouse: 100, 100, 100, 100
 - avoids dangerouslySetInnerHTML
-- editor and preview
-- custom dynamic line counter
-- horizontal and vertical layouts
-- horizontal and vertical resizing
-- three themes (dark/neutral/light)
+- editor with real-time preview
+- preview scrolls with editor
+- switch between column/row layout
+- resize column/row layout
+- custom dynamic number line system
+- real-time file size
+- real-time word and line count
+- three themes all checked for adherence to contrast standards (dark/neutral/light)
 - local storage
-- word and character counter
 - save to json file
 - upload from json file
 - copy to clipboard
