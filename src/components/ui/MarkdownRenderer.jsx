@@ -32,8 +32,28 @@ export default function MarkdownRenderer({
     setCharCount(curr.split("").length);
   };
 
+  const createLineNumbers = () => {
+    const lines = html.split("\n").length
+    const lineNumbers = [];
+    for (let i = 0; i < lines; i++) {
+      lineNumbers.push(<div key={i} className="line-number">{i + 1}</div>)
+    }
+    return lineNumbers;
+  }
+
+  // when textarea scrolls, scroll line numbers
+  const handleScroll = (e) => {
+    const { scrollTop } = e.target;
+    const linePosition = document.querySelector(".line-position");
+    linePosition.scrollTop = scrollTop;
+  }
+
   return (
     <div className="markdown-container">
+      <div className="line-position">
+        {createLineNumbers()}
+      </div>
+
       <div
         className="word-count"
         disabled={charCount === 0}
@@ -41,6 +61,7 @@ export default function MarkdownRenderer({
       >
         {countState === "words" ? wordCount : charCount}
       </div>
+
       <Split
         className={layoutState === "column" ? "split vert" : "split horiz"}
         direction={layoutState === "column" ? "vertical" : "horizontal"}
@@ -59,6 +80,7 @@ export default function MarkdownRenderer({
             value={html}
             onChange={handleHtmlChange}
             spellCheck="false"
+            onScroll={handleScroll}
             className="markdown-input"
             placeholder="# MARKDOWN LITE&#10;## Write your markdown here... &#10;&#10;> (this is not traditional markdown).&#10;## Click on ? mark for list of commands.&#10;&#10;### Change layout/copy output w/ icons next to ? mark.&#10;&#10;### Grab & move divider to resize the editor/preview.&#10;&#10;### Download/Upload with top right icons (json)."
           />

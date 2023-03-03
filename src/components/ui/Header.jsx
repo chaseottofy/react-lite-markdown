@@ -1,4 +1,4 @@
-// icons
+import { useState } from "react";
 import { IoMdClose, IoMdHelp, IoMdMoon, IoMdSunny } from "react-icons/io";
 import { RiLayoutColumnLine, RiFolderDownloadFill, RiFileUploadLine } from "react-icons/ri";
 import { VscCopy } from "react-icons/vsc";
@@ -33,7 +33,7 @@ export default function Header({
   handleTheme,
 }) {
 
-
+  const [copyMessage, setCopyMessage] = useState("copy markdown");
 
   return (
     <header className="header">
@@ -71,7 +71,15 @@ export default function Header({
           btnclass="btn-svgpair copy-markdown"
           title={<VscCopy className="copy-icon" />}
           onClick={() => {
-            html.length === 0 ? alert("no markdown to copy") : navigator.clipboard.writeText(html.replace(/<br>/g, "\n"));
+            if (html.length === 0) {
+              setCopyMessage("no markdown to copy");
+            } else {
+              navigator.clipboard.writeText(
+                html.replace(/<br>/g, "\n")
+              );
+              setCopyMessage("copied!");
+              setTimeout(() => setCopyMessage("copy markdown"), 1000);
+            }
           }}
         />
 
@@ -88,9 +96,18 @@ export default function Header({
           anchorSelect="#help-btn"
           content={sidebarState ? "close help" : "open help"}
         />
-        <Tooltip anchorSelect="#layout-btn" content="change layout" />
-        <Tooltip anchorSelect="#copy-btn" content="copy markdown" />
-        <Tooltip anchorSelect="#theme-btn" content="change theme" />
+        <Tooltip
+          anchorSelect="#layout-btn"
+          content="change layout"
+        />
+        <Tooltip
+          anchorSelect="#copy-btn"
+          content={copyMessage}
+        />
+        <Tooltip
+          anchorSelect="#theme-btn"
+          content="change theme"
+        />
       </div>
 
       <div className="header-col-2">
@@ -106,8 +123,15 @@ export default function Header({
           title={<RiFileUploadLine className="upload-icon" />}
           onClick={() => { uploadFile({ setHtml: setHtml }); }}
         />
-        <Tooltip anchorSelect="#download-btn" content="download json" />
-        <Tooltip anchorSelect="#upload-btn" content="upload json" />
+
+        <Tooltip
+          anchorSelect="#download-btn"
+          content="download json"
+        />
+        <Tooltip
+          anchorSelect="#upload-btn"
+          content="upload json"
+        />
       </div>
 
     </header>

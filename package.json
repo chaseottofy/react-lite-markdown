@@ -1,6 +1,6 @@
 {
   "homepage": "https://chaseottofy.github.io/react-like-markdown/",
-
+  "private":true,
   "name": "react-lite-markdown",
   "version": "0.0.0",
   "type": "module",

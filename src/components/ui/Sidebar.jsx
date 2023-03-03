@@ -6,81 +6,84 @@ export default function Sidebar({ sidebarState }) {
     <div className={sidebarState ? "sidebar show-sidebar" : "sidebar hide-sidebar"}>
       <div className="sidebar-body">
         <table>
+
+          <thead>
+            <tr>
+              <th>Markdown</th>
+              <th>Output</th>
+            </tr>
+          </thead>
+
+
           <tbody>
             <tr>
-              <td>
-                <h1 className="header1">#</h1>
-              </td>
-              <td>
-                <h1 className="header1">Header 1</h1>
-              </td>
+              <td><h1 className="header1">#</h1></td>
+              <td><h1 className="header1">Header 1</h1></td>
             </tr>
+
+            <tr>
+              <td><h2 className="header2">##</h2></td>
+              <td><h2 className="header2">Header 2</h2></td>
+            </tr>
+
+            <tr>
+              <td><h3 className="header3">###</h3></td>
+              <td><h3 className="header3">Header 3</h3></td>
+            </tr>
+
             <tr>
               <td>
-                <h1 className="header2">##</h1>
+                <div className="list-example__wrapper">
+                  <p>- item1</p>
+                  <p>- item2</p>
+                </div>
               </td>
               <td>
-                <h1 className="header2">Header 2</h1>
+                <div className="list-example__wrapper">
+                  <p className="list-example">• item1</p>
+                  <p className="list-example">• item2</p>
+                </div>
               </td>
             </tr>
+
             <tr>
-              <td>
-                <h1 className="header3">###</h1>
-              </td>
-              <td>
-                <h1 className="header3">Header 3</h1>
-              </td>
+              <td>*bold*</td>
+              <td className="bold">bold</td>
             </tr>
+
             <tr>
-              <td>
-                <p>*bold*</p>
-              </td>
-              <td>
-                <p className="bold">bold</p>
-              </td>
+              <td>[link](https://)</td>
+              <td className="example-link">link</td>
             </tr>
+
             <tr>
-              <td>
-                <p>- list</p>
-              </td>
-              <td>
-                <p className="list-example">• list</p>
-              </td>
+              <td>{`{image link}`}</td>
+              <td><span className="fake-img">img</span></td>
             </tr>
+
             <tr>
-              <td>
-                <p>[link](https://)</p>
-              </td>
-              <td>
-                <p className="example-link">link</p>
-              </td>
+              <td>&gt; blockquote</td>
+              <td><p className="blockquote">blockquote</p></td>
             </tr>
+
             <tr>
-              <td>
-                <p>{`{image link}`}</p>
-              </td>
-              <td>
-                <div className="fake-img">img</div>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <p>&gt; blockquote</p>
-              </td>
-              <td>
-                <p className="blockquote">blockquote</p>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <span>&lt;code&gt;...&lt;/code&gt;</span>
-              </td>
+              <td>&lt;code&gt;...&lt;/code&gt;</td>
               <td>
                 <pre className="pre">
                   <code className="code">hello()</code>
                 </pre>
               </td>
             </tr>
+
+            <tr>
+              <td>
+                <span className="example-break-sm">
+                  3 underscores "___"
+                </span>
+              </td>
+              <td><span className="example-break-lg"></span></td>
+            </tr>
+
           </tbody>
         </table>
       </div>
