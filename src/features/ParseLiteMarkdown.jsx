@@ -17,8 +17,6 @@
  * @description only supports h1, h2, h3, bold, link, image, codeblock, blockquote, unordered list.
  */
 export default function ParseLiteMarkdown({ html }) {
-  // only parse the second <br> tag
-  // const [prevHtml, setPrevHtml] = useState("");
   let lines = html.split('\n');
 
   const pattern = {

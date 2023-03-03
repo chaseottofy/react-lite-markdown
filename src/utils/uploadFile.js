@@ -4,7 +4,6 @@ export default function UploadFile({ setHtml }) {
     if (typeof data !== "string") return false;
     if (data.length === 0) return false;
     
-    // JSON.parse will throw an error if the string is not json
     try {
       JSON.parse(data);
     } catch (e) {

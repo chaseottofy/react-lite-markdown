@@ -1,26 +1,16 @@
 import "../../styles/Sidebar.css";
-import { AiFillGithub } from "react-icons/ai";
 
 /**
  * Sidebar
  * @param {boolean} sidebarState
  * @returns {Component}
- * @description lists markdown commands in table
+ * @description list markdown commands
  */
 export default function Sidebar({ sidebarState }) {
   return (
     <div className={sidebarState ? "sidebar show-sidebar" : "sidebar hide-sidebar"}>
       <div className="sidebar-body">
         <table>
-
-          {/* <thead>
-            <tr>
-              <th>Command</th>
-              <th>Output</th>
-            </tr>
-          </thead> */}
-
-
           <tbody>
             <tr>
               <td><h1 className="header1"># ...</h1></td>
@@ -71,15 +61,6 @@ export default function Sidebar({ sidebarState }) {
               <td>&gt; blockquote</td>
               <td><p className="blockquote">blockquote</p></td>
             </tr>
-
-            {/* <tr>
-              <td>&lt;code&gt;...&lt;/code&gt;</td>
-              <td>
-                <pre className="pre">
-                  <code className="code">hello()</code>
-                </pre>
-              </td>
-            </tr> */}
 
             <tr>
               <td>

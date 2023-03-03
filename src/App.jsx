@@ -14,17 +14,7 @@ function App() {
   const [layoutState, setLayoutState] = useState("row");
   /* theme__light, theme__dark, theme__medium */
   const [theme, setTheme] = useState("theme__light");
-
-  // const handleLayout = () => {
-  //   if (layoutState === "row") {
-  //     setLayoutState("column");
-  //     store.set("layout", "column");
-  //   } else {
-  //     setLayoutState("row");
-  //     store.set("layout", "row");
-  //   }
-  // }
-
+  
   useEffect(() => {
     const localHtml = store.get('html');
     if (localHtml) {
@@ -35,15 +25,6 @@ function App() {
   useEffect(() => { 
     store.set('html', html); 
   }, [html]);
-
-  // useEffect(() => {
-  //   const localLayout = store.get("layout");
-  //   if (localLayout === "column") {
-  //     setLayoutState("column");
-  //   } else {
-  //     setLayoutState("row");
-  //   }
-  // }, [])
 
   useEffect(() => {
     const localTheme = store.get('theme');

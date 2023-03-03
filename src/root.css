@@ -343,7 +343,6 @@ svg {
   background: var(--tooltipbg);
   font-family: var(--primaryFont);
   font-size: 12px;
-  /* letter-spacing: -0.5px; */
   font-weight: 500;
   line-height: 1.5;
   z-index: 999;

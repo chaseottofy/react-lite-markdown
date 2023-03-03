@@ -28,11 +28,9 @@ export default function MarkdownRenderer({
   const [parsedSize, setParsedSize] = useState("0 Bytes"); // size of parsed html
 
   const [lines, setLines] = useState(16);
-  const [currentLine, setCurrentLine] = useState("36px");
+  const [currentLine, setCurrentLine] = useState("12px");
   const [topColHeight, setTopColHeight] = useState("50%");
-
   const deferredLines = useDeferredValue(lines);
-
   const [scrollH, setScrollH] = useState(0);
 
   const handleHtmlChange = (e) => {
@@ -63,7 +61,7 @@ export default function MarkdownRenderer({
 
     const lines = parseInt(textareaHeight / parseInt(getComputedStyle(textarea).lineHeight));
     setLines(lines);
-    console.log('set lines ran');
+    console.log(currentLine);
   };
 
   // line numbers scroll with textarea
@@ -71,16 +69,8 @@ export default function MarkdownRenderer({
     const { scrollTop } = e.target;
     const linePosition = document.querySelector(".line-position");
     const outputwrapper = document.querySelector(".output-wrapper");
-
     linePosition.scrollTop = scrollTop;
     outputwrapper.scrollTop = scrollTop;
-  };
-
-  const handleTextareaFocus = (e) => {
-    // check if textarea is empty
-    const { selectionStart } = e.target;
-    const line = e.target.value.substr(0, selectionStart).split("\n").length;
-    setCurrentLine(String((line * 24) - 12) + "px");
   };
 
   useEffect(() => {
@@ -155,11 +145,10 @@ export default function MarkdownRenderer({
           }}
         >
 
-          {/* <div 
+          <div 
             className="line-highlight"
-            style={{ width: layoutState === "column" ? "100%" : "50%" }}
-          ></div> */
-          }
+            style={{ width: layoutState === "column" ? "100%" : "100%", top: currentLine }}
+          ></div> 
 
           <textarea
             value={html}
@@ -200,7 +189,8 @@ export default function MarkdownRenderer({
 
         </div>
         <div className="markdown-footer__col2">
-          <Tooltip content="by chase ottofy" position="top">
+
+          <Tooltip content="by chase ottofy" position="left">
             <a
               title="github repo link"
               rel="noreferrer"
