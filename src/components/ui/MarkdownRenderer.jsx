@@ -90,7 +90,6 @@ export default function MarkdownRenderer({
         minSize={
           layoutState === "column" ? [0, 200] : [200, 0]
         }
-        // minSize={[200, 0]}
         onDragEnd={createLineNumbers}
         gutterSize={8}
         gutterAlign="center"
