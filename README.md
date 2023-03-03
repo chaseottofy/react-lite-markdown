@@ -9,6 +9,7 @@ Features:
 - Lighthouse: 100, 100, 100, 100
 - avoids dangerouslySetInnerHTML
 - editor and preview
+- custom dynamic line counter
 - horizontal and vertical layouts
 - horizontal and vertical resizing
 - three themes (dark/neutral/light)

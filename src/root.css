@@ -38,12 +38,6 @@
   --primaryFont: "Roboto", sans-serif;
   --secondaryFont: Optimistic Display, -apple-system, ui-sans-serif, system-ui, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif;
 
-  /* webkit */
-  --scrollerThumbBackground: #484e51;
-  --scrollerThumbBorder: 4px solid var(--black1);
-  --scrollerThumbBackgroundHover: #505659;
-  --scrollerTrackBackground: var(--black1);
-
   /* box-shadow */
   --box-shadow-md:
     rgba(0, 0, 0, 0.2) 1px 2px 6px 1px,
@@ -74,6 +68,8 @@
   --primary1: #2874ae;
   --primary2: #1666a2;
   --primarylight1: #3daafd;
+  --scrollthumb: #484e51;
+  --scrollthumbhover: #505659;
 }
 
 .theme__medium {
@@ -88,6 +84,8 @@
   --primary1: #76feff;
   --primary2: #00C3C3;
   --primarylight1: #25FFFF;
+  --scrollthumb: #484e51;
+  --scrollthumbhover: #505659;
 }
 
 .theme__light {
@@ -102,9 +100,11 @@
   --primary1: #5693e8;
   --primary2: #5693e8;
   --primarylight1: #3c4043;
+  --scrollthumb: #778085;
+  --scrollthumbhover: #666d71;
 }
 
-/* Reset
+/* base reset
 ====================*/
 html,
 body,
@@ -150,6 +150,8 @@ body {
 
 }
 
+/* button/select reset
+====================*/
 button,
 select {
   text-transform: none;
@@ -164,6 +166,8 @@ select:focus-visible {
   transition: 150ms ease-out;
 }
 
+/* input/textarea reset
+=======================*/
 textarea:focus {
   outline: none;
   border-color: var(--mdgrey2);
@@ -191,6 +195,8 @@ textarea::placeholder {
   color: var(--mdgrey2);
 }
 
+/* table elements
+====================*/
 table {
   border-collapse: collapse;
   border-spacing: 0;
@@ -261,7 +267,6 @@ fieldset {
   display: none !important;
 }
 
-/* svg size really depends on the project but usually dimensions will be global */
 svg {
   user-select: none;
   pointer-events: none;
@@ -278,13 +283,13 @@ svg {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--scrollerThumbBackground);
-  border: var(--scrollerThumbBorder);
+  background: var(--scrollthumb);
+  border: var(--scrollthumb);
   border-radius: 12px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--scrollerThumbBackgroundHover);
+  background: var(--scrollthumbhover);
 }
 
 ::-webkit-scrollbar-track {
