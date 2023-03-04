@@ -27,15 +27,20 @@
   src: url('./assets/fonts/roboto-mono-v22-latin-700.woff2') format('woff2'),
 }
 
+/* color injected via theme__classes in document root */
 :root {
-  /* color injected via theme__ classes in document root */
   /* font */
   --primaryFont: "Roboto Mono", monospace;
+
+  --green1: #00a000;
+  /* values important for calculations */
   --headerHeight: 52px;
+  --headerOffset: 0px;
   --footerHeight: 20px;
   --lineheight: 20px;
   --letterspacing: -0.5px;
   --numberswidth: 28px;
+
   /* box-shadow */
   --box-shadow-md:
     rgba(0, 0, 0, 0.2) 1px 2px 6px 1px,
@@ -118,7 +123,7 @@
   --primarylight1: #111314;
   --primarylight2: #3c4043;
   --overlaylg: rgba(0, 0, 0, 0.7);
-  --overlaymd: #727474;
+  --overlaymd: rgba(86, 88, 88, 0.6);
   --overlaysm: rgba(0, 0, 0, 0.2);
   --tooltipbg: #303030;
   --tooltipcolor: #fff;
@@ -192,6 +197,10 @@ select:focus-visible {
 textarea:focus {
   outline: none;
   border-color: var(--mdgrey2);
+}
+
+textarea::-webkit-resizer {
+  display: none;
 }
 
 textarea::-webkit-scrollbar-thumb {
@@ -318,80 +327,8 @@ svg {
   background: transparent;
 }
 
-
 /* resusable classes
 ==================================================== */
-/* TOOLTIP
-====================*/
-.tooltip-container {
-  position: relative;
-}
-
-.tooltip-trigger {
-  display: inline-block;
-  cursor: pointer;
-}
-
-.tooltip {
-  position: absolute;
-  padding: 6px 10px;
-  border-radius: 4px;
-  width: auto;
-  white-space: nowrap;
-  background: transparent;
-  color: var(--tooltipcolor);
-  background: var(--tooltipbg);
-  font-family: var(--primaryFont);
-  font-size: 12px;
-  font-weight: 500;
-  line-height: 1.5;
-  z-index: 999;
-  opacity: 1;
-}
-
-.top::before,
-.bottom::before,
-.right::before,
-.left::before {
-  content: "";
-  position: absolute;
-  border-style: solid;
-  border-color: transparent;
-  border-width: 6px;
-  border-style: solid;
-}
-
-.top::before,
-.bottom::before {
-  margin-left: -6px;
-  left: 50%;
-}
-
-.top::before {
-  top: 92%;
-  border-color: var(--tooltipbg) transparent transparent transparent;
-}
-
-.bottom::before {
-  bottom: 92%;
-  border-color: transparent transparent var(--tooltipbg) transparent;
-}
-
-.right::before,
-.left::before {
-  top: 50%;
-  margin-top: -6px;
-}
-
-.right::before {
-  right: 98%;
-  border-color: transparent var(--tooltipbg) transparent transparent;
-}
-
-.left::before {
-  left: 98%;
-  border-color: transparent transparent transparent var(--tooltipbg);
-}
 
 /* flex
 ====================*/
@@ -523,7 +460,22 @@ svg {
   width: 100%;
   height: 100%;
   background: transparent;
-  z-index: 1;
+}
+
+
+/* Useful on load for some cases
+=================================*/
+.preload * {
+  -webkit-transition: none !important;
+  transition: none !important;
+}
+
+.disable-transitions * {
+  -webkit-transition: none !important;
+  transition-duration: none !important;
+  transition-property: none !important;
+  transition-timing-function: none !important;
+  transition: none !important;
 }
 
 /* Testing

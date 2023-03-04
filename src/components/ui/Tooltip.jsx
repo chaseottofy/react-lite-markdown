@@ -1,6 +1,6 @@
 import { useState } from "react";
 import PropTypes from 'prop-types';
-
+import "../../styles/Tooltip.css";
 /**
  * Tooltip
  * @param {string} content 
@@ -35,6 +35,12 @@ const Tooltip = (
           bottom: '100%',
           left: '50%',
           transform: 'translate(-75%, -8%)'
+        };
+      case 'top-left':
+        return {
+          bottom: '100%',
+          left: '10%',
+          transform: 'translate(-10%, -8%)'
         };
       case 'left':
         return {
@@ -87,7 +93,7 @@ const Tooltip = (
 Tooltip.propTypes = {
   content: PropTypes.node.isRequired,
   children: PropTypes.node.isRequired,
-  position: PropTypes.oneOf(['top', 'left', 'right', 'bottom']),
+  position: PropTypes.oneOf(['top', 'left', 'right', 'bottom', 'top-left', 'top-right', 'bottom-left', 'bottom-right']),
   delay: PropTypes.number,
 };
 

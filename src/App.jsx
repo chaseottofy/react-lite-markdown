@@ -5,7 +5,7 @@ import './styles/App.css';
 import {
   Sidebar,
   Header,
-  MarkdownRenderer
+  MarkdownEditor
 } from "./components";
 
 function App() {
@@ -52,7 +52,7 @@ function App() {
           setLayoutState={setLayoutState}
           handleTheme={() => handleTheme({ store, setTheme })}
         />
-        <MarkdownRenderer
+        <MarkdownEditor
           html={html}
           setHtml={setHtml}
           layoutState={layoutState}

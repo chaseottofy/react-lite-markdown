@@ -15,8 +15,7 @@
 - real-time file size.
 - real-time word and line count.
 - local storage.
-- save to json file.
-- upload from json file.
+- save and upload files.
 - copy to clipboard.
 
 ### about

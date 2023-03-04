@@ -28,7 +28,7 @@ export default function MarkdownRenderer({
   const [parsedSize, setParsedSize] = useState("0 Bytes"); // size of parsed html
 
   const [lines, setLines] = useState(16);
-  const [currentLine, setCurrentLine] = useState("12px");
+  const [currentLine, setCurrentLine] = useState("0px");
   const [topColHeight, setTopColHeight] = useState("50%");
   const deferredLines = useDeferredValue(lines);
   const [scrollH, setScrollH] = useState(0);
@@ -48,11 +48,14 @@ export default function MarkdownRenderer({
     return lineNumbers;
   };
 
-  /**
-   * createLineNumbers
-   * @description textarea.scrollHeight/line height(24px) 
-   * (cannot just count the number of "\n" in html due to word wrap)
-   */
+  const createHighlightGrid = () => {
+    const lineheight = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--lineheight'));
+    const height = document.querySelector(".markdown-container").offsetHeight;
+    const rows = Math.ceil(height / lineheight);
+    // console.log(rows);
+    // console.log(lineheight);
+  }
+
   const createLineNumbers = () => {
     const textarea = document.querySelector(".markdown-input");
     const textareaHeight = textarea.scrollHeight;
@@ -61,13 +64,13 @@ export default function MarkdownRenderer({
 
     const lines = parseInt(textareaHeight / parseInt(getComputedStyle(textarea).lineHeight));
     setLines(lines);
-    console.log(currentLine);
+    console.log('lines', lines);
   };
 
   // line numbers scroll with textarea
   const handleScroll = (e) => {
     const { scrollTop } = e.target;
-    const linePosition = document.querySelector(".line-position");
+    const linePosition = document.querySelector(".line-numbers__wrapper");
     const outputwrapper = document.querySelector(".output-wrapper");
     linePosition.scrollTop = scrollTop;
     outputwrapper.scrollTop = scrollTop;
@@ -96,59 +99,45 @@ export default function MarkdownRenderer({
     setWordCount(wordCounter(html));
     setParsedSize(calcFileSize(html));
     createLineNumbers();
+    createHighlightGrid();
   }, [html]);
 
   return (
     <div className="markdown-container">
-      {/* line numbers */}
-      <div
-        className="line-position"
-        style={{ height: layoutState === "column" ? topColHeight : "100%" }}
-      >
-        {appendLineNumbers()}
-      </div>
 
-      {/* editor/preview */}
+      <div className="line-numbers__wrapper" style={{ height: layoutState === "column" ? topColHeight : "100%" }}>{appendLineNumbers()}</div>
+
       <Split
-        className={
-          layoutState === "column" ? "split vert" : "split horiz"
-        }
-        direction={
-          layoutState === "column" ? "vertical" : "horizontal"
-        }
+        className={layoutState === "column" ? "split vert" : "split horiz"}
+        direction={layoutState === "column" ? "vertical" : "horizontal"}
+        snapOffset={layoutState === "column" ? 30 : 30}
+        minSize={layoutState === "column" ? 0 : [200, 0]}
+        gutterSize={12}
+        gutterAlign="center"
         sizes={[50, 50]}
-        minSize={
-          layoutState === "column" ? 0 : [200, 0]
-        }
+        dragInterval={1}
         onDragEnd={(sizes) => {
+          // may need to update if new width has triggered word wrap ...only when row layout
           createLineNumbers();
           if (layoutState === "column") {
-            const newcoltop = String(100 - sizes[1]) + "%";
-            const newcalc = `calc(${newcoltop} - 6px)`;
-            console.log(newcalc);
+            const newcalc = `calc(${String(100 - sizes[1]) + "%"} - 6px)`;
             setTopColHeight(newcalc);
           } else {
             setTopColHeight("100%");
           }
-        }} // after resize, may need to update if new width has triggered word wrap (new lines) ...only on row layout
-        gutterSize={12}
-        gutterAlign="center"
-        snapOffset={
-          layoutState === "column" ? 30 : 30
-        }
-        dragInterval={1}
+        }} 
       >
         <div
           className="input-wrapper"
-          style={{
-            height: layoutState === "column" ? "50%" : "100%", width: layoutState === "column" ? "100%" : "50%"
-          }}
+          style={{height: layoutState === "column" ? "50%" : "100%", width: layoutState === "column" ? "100%" : "50%"}}
         >
 
-          <div 
-            className="line-highlight"
-            style={{ width: layoutState === "column" ? "100%" : "100%", top: currentLine }}
-          ></div> 
+          <div className="line-highlight__grid">
+            <div className="lh"></div>
+            <div className="lh"></div>
+            <div className="lh"></div>
+            <div className="lh"></div>
+          </div>
 
           <textarea
             value={html}
@@ -162,7 +151,7 @@ export default function MarkdownRenderer({
         </div>
 
         <div
-          className={layoutState === "column" ? "output-wrapper output-column" : "output-wrapper"}
+          className={layoutState === "column" ? "markdown-output output-column" : "markdown-output"}
           style={{ height: layoutState === "column" ? "50%" : "100%", width: layoutState === "column" ? "100%" : "50%" }}
         >
           {ParseLiteMarkdown({ html })}
@@ -172,24 +161,18 @@ export default function MarkdownRenderer({
       <div className="markdown-footer">
         <div className="markdown-footer__col1">
           <div className="footer-title">session: </div>
-          <div className="bytes-total">
-            <span>
-              {parsedSize}
-            </span>
-          </div>
+          <div className="bytes-total"><span>{parsedSize}</span></div>
           <div className="word-count">
             <span>{wordCount}</span>
             <span>words</span>
           </div>
-
           <div className="line-count">
             <span>{lines}</span>
             <span>lines</span>
           </div>
-
         </div>
-        <div className="markdown-footer__col2">
 
+        <div className="markdown-footer__col2">
           <Tooltip content="by chase ottofy" position="left">
             <a
               title="github repo link"
@@ -203,7 +186,6 @@ export default function MarkdownRenderer({
               <IoLogoGithub className="git-link" />
             </a>
           </Tooltip>
-
         </div>
       </div>
     </div>

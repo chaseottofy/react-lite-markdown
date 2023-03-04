@@ -1,35 +1,30 @@
-export default function UploadFile({ setHtml }) {
-  const validateUpload = (data) => {
-    if (!data) return false;
-    if (typeof data !== "string") return false;
-    if (data.length === 0) return false;
-    
-    try {
-      JSON.parse(data);
-    } catch (e) {
-      return false;
-    }
-    return true;
-  }
-
+// .txt file
+// mac users : https://macromates.com/
+export default function UploadFile({setHtml}) {
   const file = document.createElement("input");
   file.type = "file";
-  file.accept = "application/json";
+  file.accept = "text/plain";
   file.onchange = (e) => {
-    const file = e.target.files[0];
+    const targetFile = e.target.files[0];
+    if (!targetFile) return;
+    if (targetFile.type !== "text/plain") {
+      const invalidType = targetFile.type.split("/")[1]
+      alert(`Invalid File : You upload (${invalidType}). This application only accepts .txt and .text files`);
+      return;
+    }
+    if (targetFile.size > 50000) {
+      alert("File is too large");
+      return;
+    }
     const reader = new FileReader();
     reader.onload = (e) => {
-      if (!validateUpload(e.target.result)) {
-        alert("Invalid file");
-        return;
-      } else {
-        setHtml(() => JSON.parse(e.target.result))
-      }
+      setHtml(() => e.target.result)
     }
-    reader.readAsText(file);
+    reader.readAsText(targetFile);
   };
   document.body.appendChild(file);
   file.click();
+  file.onchange = null;
   document.body.removeChild(file);
   return;
 }
