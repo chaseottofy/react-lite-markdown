@@ -14,7 +14,8 @@ const Tooltip = (
     content,
     children,
     position = 'bottom',
-    delay = 0
+    delay = 0,
+    height = 24,
   }
 ) => {
 
@@ -34,32 +35,37 @@ const Tooltip = (
         return {
           bottom: '100%',
           left: '50%',
-          transform: 'translate(-75%, -8%)'
+          transform: 'translate(-75%, -8%)',
+          height: `${height}px`,
         };
       case 'top-left':
         return {
           bottom: '100%',
-          left: '10%',
-          transform: 'translate(-10%, -8%)'
+          left: '50%',
+          transform: 'translate(-75%, -8%)',
+          height: `${height}px`,
         };
       case 'left':
         return {
           top: '50%',
           right: '100%',
           transform: 'translate(-10%, -50%)',
+          height: `${height}px`,
         };
       case 'right':
         return {
           top: '50%',
           left: '90%',
-          transform: 'translateY(-50%)'
+          transform: 'translateY(-50%)',
+          height: `${height}px`,
         };
       case 'bottom':
       default:
         return {
           top: '100%',
           left: '50%',
-          transform: "translate(-50%, 25%)",
+          transform: "translate(-50%, 75%)",
+          height: `${height}px`,
         };
     }
   };
@@ -95,6 +101,7 @@ Tooltip.propTypes = {
   children: PropTypes.node.isRequired,
   position: PropTypes.oneOf(['top', 'left', 'right', 'bottom', 'top-left', 'top-right', 'bottom-left', 'bottom-right']),
   delay: PropTypes.number,
+  height: PropTypes.number,
 };
 
 /**

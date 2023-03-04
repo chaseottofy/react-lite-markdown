@@ -8,7 +8,7 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  z-index: 2;
+  z-index: var(--z-sidebar);
   transform: translateX(0px);
   transition: transform 150ms ease-in-out;
 }

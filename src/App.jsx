@@ -44,7 +44,6 @@ function App() {
       <div className="main-container">
         <Header
           html={html}
-          setHtml={setHtml}
           sidebarState={sidebarState}
           setSidebarState={setSidebarState}
           layoutState={layoutState}

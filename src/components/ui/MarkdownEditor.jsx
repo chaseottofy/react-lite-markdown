@@ -1,15 +1,20 @@
 import { useState, useEffect, useDeferredValue } from "react";
 // icon
-import { IoLogoGithub } from "react-icons/io5";
+import { AiFillGithub } from "react-icons/ai";
+import { RiFolderDownloadFill, RiFileUploadLine } from "react-icons/ri";
 // plugin : split editor and preview (allow user to resize)
 import Split from "react-split";
 import Tooltip from "./Tooltip";
+import Button from "./Button";
 import ParseLiteMarkdown from '../../features/ParseLiteMarkdown';
 import useIsFirstRender from '../../hooks/useIsFirstRender';
 import wordCounter from "../../utils/wordCounter";
 import calcFileSize from "../../utils/calcFileSize";
+import saveFile from "../../utils/saveFile";
+import uploadFile from "../../utils/uploadFile";
 import "../../styles/MarkdownEditor.css";
 import "../../styles/Commands.css";
+import "../../styles/Footer.css";
 
 /**
  * @Component MarkdownRenderer
@@ -28,7 +33,6 @@ export default function MarkdownRenderer({
   const [parsedSize, setParsedSize] = useState("0 Bytes"); // size of parsed html
 
   const [lines, setLines] = useState(16);
-  const [currentLine, setCurrentLine] = useState("0px");
   const [topColHeight, setTopColHeight] = useState("50%");
   const deferredLines = useDeferredValue(lines);
   const [scrollH, setScrollH] = useState(0);
@@ -48,46 +52,36 @@ export default function MarkdownRenderer({
     return lineNumbers;
   };
 
-  const createHighlightGrid = () => {
-    const lineheight = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--lineheight'));
-    const height = document.querySelector(".markdown-container").offsetHeight;
-    const rows = Math.ceil(height / lineheight);
-    // console.log(rows);
-    // console.log(lineheight);
-  }
-
-  const createLineNumbers = () => {
+  const calcLineNumbers = () => {
     const textarea = document.querySelector(".markdown-input");
     const textareaHeight = textarea.scrollHeight;
     if (textareaHeight === scrollH) return;
     setScrollH(textareaHeight);
-
     const lines = parseInt(textareaHeight / parseInt(getComputedStyle(textarea).lineHeight));
     setLines(lines);
-    console.log('lines', lines);
   };
 
   // line numbers scroll with textarea
   const handleScroll = (e) => {
     const { scrollTop } = e.target;
     const linePosition = document.querySelector(".line-numbers__wrapper");
-    const outputwrapper = document.querySelector(".output-wrapper");
+    const outputwrapper = document.querySelector(".markdown-output");
     linePosition.scrollTop = scrollTop;
     outputwrapper.scrollTop = scrollTop;
   };
 
   useEffect(() => {
     if (isFirstRender) return;
-    createLineNumbers();
+    calcLineNumbers();
   }, [layoutState]);
 
   useEffect(() => {
     if (isFirstRender) return;
     if (deferredLines !== lines) {
-      createLineNumbers();
+      calcLineNumbers();
     }
 
-    const handleResize = () => createLineNumbers();
+    const handleResize = () => calcLineNumbers();
     window.addEventListener("resize", handleResize);
     return () => {
       window.removeEventListener("resize", handleResize);
@@ -98,14 +92,15 @@ export default function MarkdownRenderer({
     if (isFirstRender) return;
     setWordCount(wordCounter(html));
     setParsedSize(calcFileSize(html));
-    createLineNumbers();
-    createHighlightGrid();
+    calcLineNumbers();
   }, [html]);
 
   return (
     <div className="markdown-container">
 
-      <div className="line-numbers__wrapper" style={{ height: layoutState === "column" ? topColHeight : "100%" }}>{appendLineNumbers()}</div>
+      <div className="line-numbers__wrapper" style={{ height: layoutState === "column" ? topColHeight : "100%" }}>
+        {appendLineNumbers()}
+      </div>
 
       <Split
         className={layoutState === "column" ? "split vert" : "split horiz"}
@@ -118,26 +113,19 @@ export default function MarkdownRenderer({
         dragInterval={1}
         onDragEnd={(sizes) => {
           // may need to update if new width has triggered word wrap ...only when row layout
-          createLineNumbers();
+          calcLineNumbers();
           if (layoutState === "column") {
             const newcalc = `calc(${String(100 - sizes[1]) + "%"} - 6px)`;
             setTopColHeight(newcalc);
           } else {
             setTopColHeight("100%");
           }
-        }} 
+        }}
       >
         <div
           className="input-wrapper"
-          style={{height: layoutState === "column" ? "50%" : "100%", width: layoutState === "column" ? "100%" : "50%"}}
+          style={{ height: layoutState === "column" ? "50%" : "100%", width: layoutState === "column" ? "100%" : "50%" }}
         >
-
-          <div className="line-highlight__grid">
-            <div className="lh"></div>
-            <div className="lh"></div>
-            <div className="lh"></div>
-            <div className="lh"></div>
-          </div>
 
           <textarea
             value={html}
@@ -158,8 +146,10 @@ export default function MarkdownRenderer({
         </div>
       </Split>
 
-      <div className="markdown-footer">
-        <div className="markdown-footer__col1">
+
+
+      <div className="footer">
+        <div className="footer__col1">
           <div className="footer-title">session: </div>
           <div className="bytes-total"><span>{parsedSize}</span></div>
           <div className="word-count">
@@ -172,7 +162,38 @@ export default function MarkdownRenderer({
           </div>
         </div>
 
-        <div className="markdown-footer__col2">
+
+        <div className="footer__col2">
+          <div className="footer-upload-download">
+            <Tooltip
+              content="download as .txt"
+              position="top"
+            >
+              <Button
+                btnclass="btn-svgpair--sm"
+                title={
+                  <RiFolderDownloadFill className="download-icon__footer"
+                  />
+                }
+                onClick={() => { html.length === 0 ? alert("no markdown to save") : saveFile({ html: html }); }}
+              />
+            </Tooltip>
+
+            <Tooltip
+              content="upload .txt file"
+              position="top-left"
+            >
+              <Button
+                btnclass="btn-svgpair--sm"
+                title={
+                  <RiFileUploadLine className="upload-icon__footer"
+                  />
+                }
+                onClick={() => { uploadFile({ setHtml: setHtml }); }}
+              />
+            </Tooltip>
+          </div>
+
           <Tooltip content="by chase ottofy" position="left">
             <a
               title="github repo link"
@@ -183,7 +204,7 @@ export default function MarkdownRenderer({
               className="git-link__wrapper"
             >
               <span>repo</span>
-              <IoLogoGithub className="git-link" />
+              <AiFillGithub className="git-link" />
             </a>
           </Tooltip>
         </div>

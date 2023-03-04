@@ -1,12 +1,8 @@
 import { useState } from "react";
 import { IoMdClose, IoMdHelp, IoMdMoon, IoMdSunny } from "react-icons/io";
-import { RiLayoutColumnLine, RiFolderDownloadFill, RiFileUploadLine } from "react-icons/ri";
+import { RiLayoutColumnLine } from "react-icons/ri";
 import { VscCopy } from "react-icons/vsc";
-
-// components / styles / utils
 import Button from "./Button";
-import saveFile from "../../utils/saveFile";
-import uploadFile from "../../utils/uploadFile";
 import Tooltip from "./Tooltip";
 import "../../styles/Header.css";
 
@@ -22,7 +18,6 @@ import "../../styles/Header.css";
  */
 export default function Header({
   html,
-  setHtml,
   sidebarState,
   setSidebarState,
   layoutState,
@@ -49,8 +44,7 @@ export default function Header({
 
         <Tooltip content={sidebarState ? "close help" : "open help"}>
           <Button
-            id="help-btn"
-            btnclass="btn-svgpair menu-btn"
+            btnclass="btn-svgpair--sm menu-btn"
             title={sidebarState ? <IoMdClose className="menu-icon" /> : <IoMdHelp className="menu-icon" />}
             onClick={() => setSidebarState((prev) => !prev)}
           />
@@ -58,8 +52,7 @@ export default function Header({
 
         <Tooltip content="change layout">
           <Button
-            id="layout-btn"
-            btnclass={layoutState === "row" ? "btn-svgpair set-layout__btn" : "btn-svgpair set-layout__btn layout-horiz"}
+            btnclass={layoutState === "row" ? "btn-svgpair--sm set-layout__btn" : "btn-svgpair--sm set-layout__btn layout-horiz"}
             data-tooltip-content="change layout"
             title={<RiLayoutColumnLine className="set-layout__icon" />}
             onClick={() => setLayoutState((prev) => prev === "row" ? "column" : "row")}
@@ -68,8 +61,7 @@ export default function Header({
 
         <Tooltip content={copyMessage}>
           <Button
-            id="copy-btn"
-            btnclass="btn-svgpair copy-markdown"
+            btnclass="btn-svgpair--sm copy-markdown"
             title={<VscCopy className="copy-icon" />}
             onClick={() => {
               if (html.length === 0) {
@@ -87,8 +79,7 @@ export default function Header({
 
         <Tooltip content="change theme">
           <Button
-            id="theme-btn"
-            btnclass="btn-svgpair dark-mode"
+            btnclass="btn-svgpair--sm dark-mode"
             title={
               theme === "theme__light" ? <IoMdSunny className="theme-icon" /> : <IoMdMoon className="theme-icon" />
             }
@@ -96,27 +87,6 @@ export default function Header({
           />
         </Tooltip>
       </div>
-
-      <div className="header-col-2">
-        <Tooltip content="download json">
-          <Button
-            id="download-btn"
-            title={<RiFolderDownloadFill className="save-icon" />}
-            btnclass="btn-svgpair save-markdown"
-            onClick={() => { html.length === 0 ? alert("no markdown to save") : saveFile({ html: html }); }}
-          />
-        </Tooltip>
-
-        <Tooltip content="upload json" position="left">
-          <Button
-            id="upload-btn"
-            btnclass="btn-svgpair upload-markdown"
-            title={<RiFileUploadLine className="upload-icon" />}
-            onClick={() => { uploadFile({ setHtml: setHtml }); }}
-          />
-        </Tooltip>
-      </div>
-
     </header>
   );
 }

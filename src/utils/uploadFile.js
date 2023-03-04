@@ -18,13 +18,13 @@ export default function UploadFile({setHtml}) {
     }
     const reader = new FileReader();
     reader.onload = (e) => {
-      setHtml(() => e.target.result)
+      setHtml(e.target.result);
     }
     reader.readAsText(targetFile);
   };
   document.body.appendChild(file);
   file.click();
-  file.onchange = null;
+  // file.onchange = null;
   document.body.removeChild(file);
   return;
 }

@@ -29,17 +29,26 @@
 
 /* color injected via theme__classes in document root */
 :root {
-  /* font */
+  /* constants */
   --primaryFont: "Roboto Mono", monospace;
-
-  --green1: #00a000;
-  /* values important for calculations */
-  --headerHeight: 52px;
+  --headerHeight: 44px;
   --headerOffset: 0px;
   --footerHeight: 20px;
   --lineheight: 20px;
   --letterspacing: -0.5px;
   --numberswidth: 28px;
+  --green1: #00a000;
+
+  /* z-indices */
+  --z-body: 10;
+  --z-body-nums: 20;
+  --z-body-highlight: 30;
+  --z-body-output: 40;
+  --z-body-gutter: 50;
+  --z-footer: 60;
+  --z-sidebar: 70;
+  --z-header: 80;
+  --z-tooltip: 999;
 
   /* box-shadow */
   --box-shadow-md:
@@ -49,9 +58,8 @@
     rgba(0, 0, 0, 0.14) 0px 8px 10px 1px,
     rgba(0, 0, 0, 0.12) 0px 3px 14px 2px,
     rgba(0, 0, 0, 0.2) 0px 2px 4px -1px;
-  --box-shadow-header:
-    rgba(0, 0, 0, .4) 4px 0px 6px 0px,
-    rgba(0, 0, 0, .2) 8px 0px 10px 4px;
+  --box-shadow-h:
+    0px 1px 3px 0px rgba(0, 0, 0, 0.3);
   --box-shadow-sidebar:
     rgba(0, 0, 0, 0.4) 0px 4px 6px 0px,
     rgba(0, 0, 0, 0.2) 0px 8px 10px 4px;
@@ -95,13 +103,13 @@
   --darkgrey1: #1c1e1f;
   --primary1: #76feff;
   --primary2: #00C3C3;
-  --primary3: #111414;
+  --primary3: #1e4242;
   --primarylight1: #25FFFF;
   --primarylight2: #25FFFF;
   --overlaylg: rgba(0, 0, 0, 0.7);
   --overlaymd: rgba(0, 0, 0, 0.6);
   --overlaysm: rgba(0, 0, 0, 0.2);
-  --tooltipbg: #3d3e3e;
+  --tooltipbg: #2D3336;
   --tooltipcolor: #e6ffff;
   --scrollthumb: #484e51;
   --scrollthumbhover: #505659;
@@ -363,6 +371,12 @@ svg {
   margin-top: 4px;
 }
 
+.margin-h {
+  margin-left: 4px !important;
+  margin-right: 4px !important;
+  /* margin: 0 4px; */
+}
+
 /* Buttons / Select
 ====================*/
 .btn-primary,
@@ -414,31 +428,50 @@ svg {
 }
 
 /* <button>  >>  <svg> */
-.btn-svgpair {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
+
+
+.btn-svgpair,
+.btn-svgpair--sm {
   display: flex;
-  outline: 1px solid transparent;
   justify-content: center;
   align-items: center;
   cursor: pointer;
   transition: all 200ms ease;
 }
 
-.btn-svgpair:focus-visible {
+.btn-svgpair--sm {
+  height: var(--footerHeight);
+  width: var(--footerHeight);
+  padding: 2px;
+  margin: 0;
+  outline: 0;
+  border: none;
+}
+
+.btn-svgpair {
+  outline: 1px solid transparent;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+}
+
+.btn-svgpair:focus-visible,
+.btn-svgpair--sm:focus-visible {
   background: var(--black2);
 }
 
-.btn-svgpair:focus-visible svg {
+.btn-svgpair:focus-visible svg,
+.btn-svgpair--sm:focus-visible svg {
   fill: var(--primarylight2);
 }
 
-.btn-svgpair:hover svg {
+.btn-svgpair:hover svg,
+.btn-svgpair--sm:hover svg {
   fill: var(--primarylight1);
 }
 
-.btn-svgpair:hover {
+.btn-svgpair:hover,
+.btn-svgpair--sm:hover {
   background: var(--black2);
 }
 
