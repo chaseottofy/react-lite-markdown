@@ -1,6 +1,6 @@
 # markdown lite
 
-![screen](Screenshot 2023-03-13 124319.png)
+![screen](./Screenshot 2023-03-13 124319.png)
 
 ## features
 
